@@ -1,0 +1,51 @@
+---
+import '../styles/stat-card.css';
+
+export interface StatCardProps {
+    imageUrl: string;
+    accessibilityLabel: string;
+    stats: { [key: string]: number | string };
+}
+
+const { imageUrl, accessibilityLabel, stats } = Astro.props as StatCardProps;
+---
+<div class="stat-card">
+    <div class="pwr-rating">
+        <div class="pwr-rating-score glitch" data-text="99">99</div>
+    </div>
+    <div class="front-face" style=`background-image: url(${imageUrl});` aria-label=`${accessibilityLabel}`></div>
+    <div class="back-face">
+        <div class="back-face-content">
+            <table>
+                <thead>
+                    <th>Attribute</th>
+                    <th>Stat</th>
+                </thead>
+            {
+                Object.keys(stats).map((key) => (
+                    <tr>
+                        <td>{key}</td>
+                        <td>{stats[key]}</td>
+                    </tr>
+                ))
+            }
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".stat-card").forEach((statCard) => {
+        statCard.addEventListener("click", () => {
+            if (statCard.classList.contains("backwards")) {
+                statCard.classList.remove("backwards");
+                statCard.classList.add("forwards");
+                statCard.querySelector(".pwr-rating-score")?.classList.add("glitch");
+            } else {
+                statCard.classList.remove("forwards");
+                statCard.classList.add("backwards");
+                statCard.querySelector(".pwr-rating-score")?.classList.remove("glitch");
+            }
+        });
+    });
+</script>
