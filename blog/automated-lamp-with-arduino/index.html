@@ -1,0 +1,167 @@
+<!DOCTYPE html><html class="astro-42CWEBUZ">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v1.0.6">
+
+<!-- Primary Meta Tags -->
+<title>Automated Lamp With Arduino</title>
+<meta name="title" content="Automated Lamp With Arduino">
+<meta name="description" content="Create an automated LED lamp with arduino.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:3000/blog/automated-lamp-with-arduino">
+<meta property="og:title" content="Automated Lamp With Arduino">
+<meta property="og:description" content="Create an automated LED lamp with arduino.">
+<meta property="og:image" content="http://localhost:3000/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://localhost:3000/blog/automated-lamp-with-arduino">
+<meta property="twitter:title" content="Automated Lamp With Arduino">
+<meta property="twitter:description" content="Create an automated LED lamp with arduino.">
+<meta property="twitter:image" content="http://localhost:3000/placeholder-social.jpg">
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/ecdd0a03.1f5f812b.css" />
+<link rel="stylesheet" href="/assets/06b39622.a4eea500.css" /></head>
+
+	<body class="astro-42CWEBUZ">
+		<header class="astro-USFWIK74">
+	<h2 class="astro-USFWIK74">
+		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;" class="astro-USFWIK74">
+		mind-matrix.github.io
+	</h2>
+	<nav class="astro-USFWIK74">
+		<a href="/" class="astro-USFWIK74 astro-335FQABV">
+	Home
+</a>
+
+		<a href="/blog" class="astro-USFWIK74 astro-335FQABV">
+	Blog
+</a>
+
+		<a href="/about" class="astro-USFWIK74 astro-335FQABV">
+	About
+</a>
+
+		<a href="/downloads" class="astro-USFWIK74 astro-335FQABV">
+	Downloads
+</a>
+
+	</nav>
+</header>
+
+		<main class="astro-42CWEBUZ">
+			<article class="astro-42CWEBUZ">
+				
+				<h1 class="title astro-42CWEBUZ">Automated Lamp With Arduino</h1>
+				<time datetime="2017-10-31T00:00:00.000Z" class="astro-42CWEBUZ">
+					Oct 31, 2017
+				</time>
+				
+				<hr class="astro-42CWEBUZ">
+				<p>Hey folks. In this post we are going to see how we can build an automated lamp with Arduino and a bluetooth module. So let’s get started!</p>
+<h2 id="introduction">Introduction</h2>
+<p>Arduino is a hobbyist’s right arm. This small piece of wonder comes bundled with just the right tools for any small-to-medium sized hobby project and all that for a reasonable price too. Now we are going to use the Arduino to automate the working of an LED lamp. Here, by <em>“automate”</em> , I do mean <em>“automate”</em> and so it should not require any human input once it is up and running. However, it also should not irrevocably interfere in any way with a human’s lifestyle. Therefore we first have to form a principle of working. For this project, I have chosen the following principles:</p>
+<ol>
+<li>The LED should light up when the amount of ambient light is low. It also should be powered by rechargeable batteries and not the mains so it can work even if there is a power outage.</li>
+<li>The LED should be capable of being turned off manually with convenience. For that, I have chosen to go with bluetooth to turn it on or off.</li>
+</ol>
+<p>Now that we have the principles in place, let’s get down to building it.</p>
+<h2 id="things-we-need-for-this-project-apparatus">Things we need for this project (Apparatus)</h2>
+<p>We require the following things for this project.</p>
+<p><strong>Note:</strong> You can use dot board to minify the circuit but it is advisable to use a bread board for realizing the circuit first. Also, I have used Arduino UNO in this project and so the instructions that follow are for Arduino UNO exclusively but just about any of the Arduinos should do.</p>
+<ol>
+<li>Bread board</li>
+<li>Jumper Wires</li>
+<li>HC-05 Bluetooth module</li>
+<li>LED light</li>
+<li>Resistors (220 ohm)</li>
+<li>LDR</li>
+<li>Arduino UNO R3 (usually comes with a cable)</li>
+<li>USB Charger ( preferable output of 5V 1A )</li>
+</ol>
+<p>Once we have gathered all the supplies we can begin assembling the circuit.</p>
+<h2 id="the-circuit">The Circuit</h2>
+<p>The HC-05 bluetooth module looks like this:</p>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1597060888/hc05-bt-module_x6q4qx.png" alt="hc05 bt module.png"></p>
+<p>If it does, then look on the back side bottom edge (the ends of the pins). If you find a “5V” written somewhere there then just go ahead and connect the corresponding pins to the Arduino inputs, i.e, 5V to the 5V, GND to the GND, Rx to Rx and Tx to Tx. However, as I have read in some online tutorials, if you find a “Vcc” written there, then the connections are as follows:</p>
+<ul>
+<li>Vcc of HC-05 to 5V of Arduino</li>
+<li>GND of HC-05 to GND of Arduino</li>
+<li>Rx of HC-05 to Tx of Arduino</li>
+<li>Tx of HC-05 to Rx of Arduino</li>
+</ul>
+<p>Since we do have to connect the other components to the Arduino pins too, the circuit could be built like this:</p>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1597060888/circuit_k1x1mo.png" alt="circuit.png"></p>
+<p>The component on the left of the breadboard in the diagram is the LDR and on the right is the LED. Note that you have to try to keep the LED and the LDR as far apart as possible. This is because the LDR (<strong>Light Dependent Resistor)</strong> roughly tells us about the amount of light it can sense around itself. If the light is low, the LED lights up. But if the LED is too close to the LDR, it will keep lighting up momentarily and turning off or just keep flickering as the LDR values will fluctuate. Also, try to turn the LDR head away from the direction of the LED. For a more visual demo of the circuit see below:</p>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1597060893/noblinken_pmc9eg.jpg" alt="IMG20171030225651.jpg"></p>
+<h2 id="program-the-arduino">Program the Arduino</h2>
+<p>The next step is to program the Arduino according to our needs. We need to capture the data from the LDR and the bluetooth module simultaneously. If the user instructed the arduino to keep the light off, then it stays off no matter what. Else, if the environmental light is low, turn the LED On. The program looks like this:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">#include</span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">&#x3C;SoftwareSerial.h></span></span>
+<span class="line"><span style="color: #FF7B72">#define</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">LDRPin</span><span style="color: #C9D1D9"> A0 SoftwareSerial </span><span style="color: #D2A8FF">btSerial</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">,</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #FF7B72">int</span><span style="color: #C9D1D9"> LDRValue </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">int</span><span style="color: #C9D1D9"> key </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">char</span><span style="color: #C9D1D9"> data </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">setup</span><span style="color: #C9D1D9">(){</span></span>
+<span class="line"><span style="color: #C9D1D9">    btSerial.</span><span style="color: #D2A8FF">begin</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">9600</span><span style="color: #C9D1D9">);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #D2A8FF">pinMode</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">13</span><span style="color: #C9D1D9">,OUTPUT);</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">void</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">loop</span><span style="color: #C9D1D9">(){</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9">(btSerial.</span><span style="color: #D2A8FF">available</span><span style="color: #C9D1D9">()){</span></span>
+<span class="line"><span style="color: #C9D1D9">        data </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> btSerial.</span><span style="color: #D2A8FF">read</span><span style="color: #C9D1D9">();</span></span>
+<span class="line"><span style="color: #C9D1D9">        key </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> (</span><span style="color: #FF7B72">int</span><span style="color: #C9D1D9">)data </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">48</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">    LDRValue </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">analogRead</span><span style="color: #C9D1D9">(LDRPin);</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9">(LDRValue </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">3</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">&#x26;&#x26;</span><span style="color: #C9D1D9"> key </span><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">){</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #D2A8FF">digitalWrite</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">13</span><span style="color: #C9D1D9">,HIGH);</span></span>
+<span class="line"><span style="color: #C9D1D9">    } </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9">{</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #D2A8FF">digitalWrite</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">13</span><span style="color: #C9D1D9">,LOW);</span></span>
+<span class="line"><span style="color: #C9D1D9">    }</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<p>In writing the above code, I have assumed that you have arranged the circuit as was given in the diagram above. If not, the code may vary. After uploading the code, the HC-05 should blink twice or thrice as should the Arduino UNO. If you get an error saying that something like ”<strong>avrdude: stk500_recv(): programmer is not responding</strong>” or ”<strong>avrdude: stk500_getsync() attempt 1 of 10: not in sync: resp=0x0d</strong>”, then do not worry. Just disconnect the HC-05 pins and reconnect them and then retry uploading the code. It should compile and upload. After that, we are ready to fire it up.</p>
+<p>Turn off your lights, the LED should glow.</p>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1597060891/blinken_iu5aw6.jpg" alt="IMG20171030225639"></p>
+<p>Turn the lights back On and the LED should switch off automatically.</p>
+<h3 id="working-with-the-bluetooth">Working with the Bluetooth</h3>
+<p>Now that we are through with this, we have to manually turn the device on or off. For that, you can download any Bluetooth Terminal App on your phone. I am using Android and I have downloaded <a href="https://play.google.com/store/apps/details?id=project.bluetoothterminal">this</a> app.</p>
+<p>Once you have the app, open the app and change to ASCII mode. Also, make sure to turn off returning the carriage return ( \r ) and the new line ( \n ) characters at the end of the serial data. On the prescribed app above, I do it by long pressing the <em>Send ASCII</em> button to bring up the options and then turning the two checkboxes off in the <em><strong>Select ending for Sent data</strong></em> section and choosing <em>ASCII</em> in <em><strong>Select Sent data type</strong></em> section. Now we are good to go.</p>
+<p>Try switching off the light, and the LED turns on. Now send <em>0</em> to the bluetooth. The LED turns off even in the dark. Send <em>1</em> again and the LED turns back on. A general question would be, <em>“When is the extra control helpful ?”</em> To answer that, first we have to take into consideration that this was only a prototype. The real lamp would be powered by DC batteries. The whole point of this lamp, as we can see, is to save energy. Now suppose you want to leave for work. You would turn all light of your house off and only then leave. Now since the lamp is powered by the battery, unless turned manually off it will use up the charge in the battery to a futile cause. This is why we would need the extra bit of control.</p>
+<h2 id="possible-extensions">Possible Extensions</h2>
+<p>We have reached the end of this project. Now let us broadly explore how we can extend this concept to achieve better results. Some possible extension could be as follows:</p>
+<ol>
+<li><strong>Automated Home Lighting -</strong> With a few <em>PIR</em> sensors ( can roughly detect human presence ) we can extend the same circuit to controlling lights of entire rooms. Switch them on only when human movement is detected.</li>
+<li><strong>Thermoregulator -</strong> Instead of using an LDR, we can use a Thermometer and instead of LED, a heating element. By sensing the current temperature using the Thermometer, we can turn the heating element ON or OFF. We can also take this one step further by using Analog I/O Pins instead of the Digital I/O Pins to vary the temperature of a closed space. This can be helpful in highly controlled environments. A possible application would be miniature farms and/or nurseries.</li>
+</ol>
+			</article>
+		</main>
+		
+
+<footer class="astro-IQQNAWOR">
+	If you found this information useful, please share 📱. While attribution is not necessary, I would appreciate it a lot. 💖
+	<ul class="social astro-IQQNAWOR">
+		<li class="astro-IQQNAWOR">
+			<a href="mailto:sagnikmodak1118@gmail.com" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#eb4f34" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 4 4 C 2.895 4 2 4.895 2 6 L 2 18 C 2 19.105 2.895 20 4 20 L 20 20 C 21.105 20 22 19.105 22 18 L 22 6 C 22 4.895 21.105 4 20 4 L 4 4 z M 5.5976562 6 L 18.402344 6 L 12 10 L 5.5976562 6 z M 5 8.6269531 L 12 13 L 19 8.6269531 L 19 18 L 5 18 L 5 8.6269531 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://wa.me/7005878172" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#25D365" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://www.linkedin.com/in/sagnik-modak/" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#0077b4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9,17H6.5v-7H9V17z M7.7,8.7c-0.8,0-1.3-0.5-1.3-1.2s0.5-1.2,1.4-1.2c0.8,0,1.3,0.5,1.3,1.2S8.6,8.7,7.7,8.7z M18,17h-2.4v-3.8c0-1.1-0.7-1.3-0.9-1.3	s-1.1,0.2-1.1,1.3c0,0.2,0,3.8,0,3.8h-2.5v-7h2.5v1c0.3-0.6,1-1,2.2-1s2.2,1,2.2,3.2V17z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+	</ul>
+</footer>
+
+	</body></html>

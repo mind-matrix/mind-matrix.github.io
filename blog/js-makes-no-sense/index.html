@@ -1,0 +1,144 @@
+<!DOCTYPE html><html class="astro-42CWEBUZ">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v1.0.6">
+
+<!-- Primary Meta Tags -->
+<title>JavaScript makes no sense. And that&#39;s awesome!</title>
+<meta name="title" content="JavaScript makes no sense. And that's awesome!">
+<meta name="description" content="Find out why JavaScript is often blamed by developers to make absolutely no sense and how we can exploit the weird way JS code behaves to create some interesting looking code.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:3000/blog/js-makes-no-sense">
+<meta property="og:title" content="JavaScript makes no sense. And that's awesome!">
+<meta property="og:description" content="Find out why JavaScript is often blamed by developers to make absolutely no sense and how we can exploit the weird way JS code behaves to create some interesting looking code.">
+<meta property="og:image" content="http://localhost:3000/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://localhost:3000/blog/js-makes-no-sense">
+<meta property="twitter:title" content="JavaScript makes no sense. And that's awesome!">
+<meta property="twitter:description" content="Find out why JavaScript is often blamed by developers to make absolutely no sense and how we can exploit the weird way JS code behaves to create some interesting looking code.">
+<meta property="twitter:image" content="http://localhost:3000/placeholder-social.jpg">
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/ecdd0a03.1f5f812b.css" />
+<link rel="stylesheet" href="/assets/06b39622.a4eea500.css" /></head>
+
+	<body class="astro-42CWEBUZ">
+		<header class="astro-USFWIK74">
+	<h2 class="astro-USFWIK74">
+		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;" class="astro-USFWIK74">
+		mind-matrix.github.io
+	</h2>
+	<nav class="astro-USFWIK74">
+		<a href="/" class="astro-USFWIK74 astro-335FQABV">
+	Home
+</a>
+
+		<a href="/blog" class="astro-USFWIK74 astro-335FQABV">
+	Blog
+</a>
+
+		<a href="/about" class="astro-USFWIK74 astro-335FQABV">
+	About
+</a>
+
+		<a href="/downloads" class="astro-USFWIK74 astro-335FQABV">
+	Downloads
+</a>
+
+	</nav>
+</header>
+
+		<main class="astro-42CWEBUZ">
+			<article class="astro-42CWEBUZ">
+				
+				<h1 class="title astro-42CWEBUZ">JavaScript makes no sense. And that&#39;s awesome!</h1>
+				<time datetime="2020-10-11T00:00:00.000Z" class="astro-42CWEBUZ">
+					Oct 11, 2020
+				</time>
+				
+				<hr class="astro-42CWEBUZ">
+				<p>JavaScript is an interesting language to say the least. For those of you living under a rock since the ice age, JavaScript (formally known as ECMAScript) is a lightweight scripting language developed primarily for the web and now finds usage across almost all domains of programming. It is weird in a dozen different ways. For starters, it a prototype-based programming language which forms the core of it’s support for object-oriented programming paradigm. Sure, ES6 has the ‘class’, ‘inteface’ and other such syntactic sugars but the base remains the same. It is also one of the programming languages to support dynamic typing back when it wasn’t cool. But what makes JS truely an oddity in the world of programming is it’s support for <strong>Type Coercion</strong>. Type Coercion is, inherently, a weird thing. Adding that to the fact that JS has dynamic typing and such other additional weirdness, it makes for a great language for writing some out-of-this-world confusing code.</p>
+<h2 id="type-coercion">Type Coercion</h2>
+<blockquote>
+<p>Type coercion is the automatic or implicit conversion of values from one data type to another (such as strings to numbers).</p>
+</blockquote>
+<p>As simple as it seems, Type Coercion can actually be both a very powerful tool for simplifying your code as well a curse to destroy your code’s readability. Let us see some of the more obvious implications of this before we move on to the interesting ones. For example, the following expressions -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">4</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">true</span></span>
+<span class="line"><span style="color: #79C0FF">5</span></span></code></pre>
+<p>This is because <code>true</code> gets coerced into <code>1</code> and added to 4. Similarly -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'5'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">4</span></span>
+<span class="line"><span style="color: #A5D6FF">"54"</span></span></code></pre>
+<p>As is evident, <code>4</code> gets coerced into the string <code>'4'</code> by following the type coercion rules.</p>
+<p>Now since this means that any type can be converted to any other type by mixing them into specific operations, we can get any type from any other type. One of the most common usages that lie on the border of weirdness but is used by many web developers is the double-negation operation which can convert numbers into booleans equivalent to their values -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">!!</span><span style="color: #79C0FF">5</span></span>
+<span class="line"><span style="color: #79C0FF">true</span></span>
+<span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">!!</span><span style="color: #79C0FF">0</span></span>
+<span class="line"><span style="color: #79C0FF">false</span></span></code></pre>
+<p>But what this also means is that the following are perfectly legal javascript expressions with perfectly legal results too -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> {}</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">[]</span></span>
+<span class="line"><span style="color: #79C0FF">0</span></span>
+<span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> [</span><span style="color: #FF7B72">+!+</span><span style="color: #C9D1D9">[]]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">[</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">[]]</span></span>
+<span class="line"><span style="color: #A5D6FF">"10"</span></span>
+<span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> (</span><span style="color: #79C0FF">Number</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">11</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">([</span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">10</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">undefined</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">undefined</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Number</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">11</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">false</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">true</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">true</span><span style="color: #FF7B72">+</span><span style="color: #A5D6FF">""</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">([</span><span style="color: #79C0FF">false</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #79C0FF">undefined</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">10</span><span style="color: #C9D1D9">]</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">101</span><span style="color: #C9D1D9">))[</span><span style="color: #A5D6FF">"to"</span><span style="color: #FF7B72">+</span><span style="color: #79C0FF">String</span><span style="color: #C9D1D9">[</span><span style="color: #A5D6FF">"name"</span><span style="color: #C9D1D9">]](</span><span style="color: #79C0FF">34</span><span style="color: #C9D1D9">)[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]</span></span>
+<span class="line"><span style="color: #A5D6FF">"mindmatrix"</span></span></code></pre>
+<p>In fact, it has been demonstrated that any JS code can be re-written entirely in terms only 6 JS symbols. These symbols are <code>()+[]!</code>. This esoteric looking JS syntax is often referred to as the JSF*ck language. There is a great website that converts your regular old javascript into this weird looking language consisting entirely of just the 6 characters mentioned before. I have linked to the site in the last section so definitely check it out to be amazed.</p>
+<h2 id="arithmetic-operators">Arithmetic Operators</h2>
+<p>So we saw that combining strings and numbers results in strings. And just when you thought you have understood it all, you are bombed with this piece of code -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'5'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span></span>
+<span class="line"><span style="color: #A5D6FF">"51"</span></span>
+<span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #A5D6FF">'5'</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span></span>
+<span class="line"><span style="color: #79C0FF">4</span></span></code></pre>
+<p>So what happened? Why did the - operator behave differently than the + operator when subjected to the same operands? Well, it becomes clearer when you take a second look at the operators themselves. The meaning of + in this context as <code>concatenation</code> superseeds it’s meaning as <code>addition</code> operation. However, in case of other arithmetic operators like -, /, * there is no such ambiguity to be resolved as the only supported operations between the types is of arithmetic nature.</p>
+<h2 id="tagged-template-literals">Tagged Template Literals</h2>
+<p>The traditional way to call functions is common among most programming languages. And JavaScript is no different in that regards. The mortal way to call functions are similar in JavaScript to most other major languages and goes as follows -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">x</span><span style="color: #C9D1D9">(</span><span style="color: #FFA657">y</span><span style="color: #C9D1D9">) { console.</span><span style="color: #D2A8FF">log</span><span style="color: #C9D1D9">(y); }</span></span>
+<span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">x</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">"abc"</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">abc</span></span></code></pre>
+<p>However, JavaScript being JavaScript had to have another pretty unusual alternative method to call functions. This unusual way of calling functions involves using backticks instead of parentheses to enclose the parameters to the function and goes as follows -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">x</span><span style="color: #A5D6FF">`abc`</span></span>
+<span class="line"><span style="color: #C9D1D9">abc</span></span></code></pre>
+<p>Now the more curious of you might be wondering if it is possible to pass other types of arguments (that are not strings) and if it is possible to pass multiple arguments. And the answer is yes! Using the template and spread syntax.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">x</span><span style="color: #C9D1D9">(</span><span style="color: #FF7B72">...</span><span style="color: #FFA657">args</span><span style="color: #C9D1D9">){ console.</span><span style="color: #D2A8FF">log</span><span style="color: #C9D1D9">(args[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">] </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> args[</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">]); }</span></span>
+<span class="line"><span style="color: #FF7B72">></span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">x</span><span style="color: #A5D6FF">`${</span><span style="color: #79C0FF">2</span><span style="color: #A5D6FF">}${</span><span style="color: #79C0FF">3</span><span style="color: #A5D6FF">}`</span></span>
+<span class="line"><span style="color: #79C0FF">5</span></span></code></pre>
+<p>Just note that the actual argument list for the function begins from index 1.</p>
+<p>So these are some of the weird ways you can code in javascript. And like any powerful tool, JavaScript’s freedom of expression can be interpreted as both a feature and a bug. For further reading, I have linked to various useful resources down below that you can check out at your leisure for more JS Awesomeness.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion">Type Coercion - MDN Docs</a></li>
+<li><a href="http://www.jsfuck.com/">JavaScript to JSF*ck Converter</a></li>
+</ol>
+			</article>
+		</main>
+		
+
+<footer class="astro-IQQNAWOR">
+	If you found this information useful, please share 📱. While attribution is not necessary, I would appreciate it a lot. 💖
+	<ul class="social astro-IQQNAWOR">
+		<li class="astro-IQQNAWOR">
+			<a href="mailto:sagnikmodak1118@gmail.com" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#eb4f34" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 4 4 C 2.895 4 2 4.895 2 6 L 2 18 C 2 19.105 2.895 20 4 20 L 20 20 C 21.105 20 22 19.105 22 18 L 22 6 C 22 4.895 21.105 4 20 4 L 4 4 z M 5.5976562 6 L 18.402344 6 L 12 10 L 5.5976562 6 z M 5 8.6269531 L 12 13 L 19 8.6269531 L 19 18 L 5 18 L 5 8.6269531 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://wa.me/7005878172" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#25D365" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://www.linkedin.com/in/sagnik-modak/" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#0077b4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9,17H6.5v-7H9V17z M7.7,8.7c-0.8,0-1.3-0.5-1.3-1.2s0.5-1.2,1.4-1.2c0.8,0,1.3,0.5,1.3,1.2S8.6,8.7,7.7,8.7z M18,17h-2.4v-3.8c0-1.1-0.7-1.3-0.9-1.3	s-1.1,0.2-1.1,1.3c0,0.2,0,3.8,0,3.8h-2.5v-7h2.5v1c0.3-0.6,1-1,2.2-1s2.2,1,2.2,3.2V17z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+	</ul>
+</footer>
+
+	</body></html>

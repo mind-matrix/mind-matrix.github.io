@@ -1,0 +1,233 @@
+<!DOCTYPE html><html class="astro-42CWEBUZ">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v1.0.6">
+
+<!-- Primary Meta Tags -->
+<title>Leveraging IPFS to host a truely distributed website</title>
+<meta name="title" content="Leveraging IPFS to host a truely distributed website">
+<meta name="description" content="See how you can use the power of Web3.0 to host your static websites for no cost with IPFS.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:3000/blog/leveraging-ipfs-to-host-a-truely-distributed-website">
+<meta property="og:title" content="Leveraging IPFS to host a truely distributed website">
+<meta property="og:description" content="See how you can use the power of Web3.0 to host your static websites for no cost with IPFS.">
+<meta property="og:image" content="http://localhost:3000/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://localhost:3000/blog/leveraging-ipfs-to-host-a-truely-distributed-website">
+<meta property="twitter:title" content="Leveraging IPFS to host a truely distributed website">
+<meta property="twitter:description" content="See how you can use the power of Web3.0 to host your static websites for no cost with IPFS.">
+<meta property="twitter:image" content="http://localhost:3000/placeholder-social.jpg">
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/ecdd0a03.1f5f812b.css" />
+<link rel="stylesheet" href="/assets/06b39622.a4eea500.css" /></head>
+
+	<body class="astro-42CWEBUZ">
+		<header class="astro-USFWIK74">
+	<h2 class="astro-USFWIK74">
+		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;" class="astro-USFWIK74">
+		mind-matrix.github.io
+	</h2>
+	<nav class="astro-USFWIK74">
+		<a href="/" class="astro-USFWIK74 astro-335FQABV">
+	Home
+</a>
+
+		<a href="/blog" class="astro-USFWIK74 astro-335FQABV">
+	Blog
+</a>
+
+		<a href="/about" class="astro-USFWIK74 astro-335FQABV">
+	About
+</a>
+
+		<a href="/downloads" class="astro-USFWIK74 astro-335FQABV">
+	Downloads
+</a>
+
+	</nav>
+</header>
+
+		<main class="astro-42CWEBUZ">
+			<article class="astro-42CWEBUZ">
+				
+				<h1 class="title astro-42CWEBUZ">Leveraging IPFS to host a truely distributed website</h1>
+				<time datetime="2021-04-20T00:00:00.000Z" class="astro-42CWEBUZ">
+					Apr 20, 2021
+				</time>
+				
+				<hr class="astro-42CWEBUZ">
+				<p><strong>TL;DR</strong> With the power of Web3.0, you can now host your static websites for absolutely FREE with IPFS. You still do need to pay if you want a custom domain. Dynamic content is a completely different story and needs to be dealt with in a separate article. Read on to find out more.</p>
+<p>The Internet is growing at an unprecedented pace. There are about 1.5 billion websites on the Internet at the time of writing this article. According to <a href="https://www.millforbusiness.com/how-many-websites-are-there/">this</a> article, about 380 new websites are created every minute! Now, that means space on the internet is pricey. Especially in today’s economy, you would need somewhere between $400 to $60,000 each year just to keep your website running.</p>
+<p>But if you don’t mind using your console and have 10 minutes to spare, I can show you how you can host your website for no more than ZERO dimes on the Internet. So, let’s get started.</p>
+<h2 id="step-1-setting-up-ipfs">Step 1: Setting Up IPFS</h2>
+<p>IPFS is a set of protocols based on the BitTorrent blockchain technology and improves upon it. It enables P2P file sharing just like bit-torrent but unlike torrent, it is designed to be a replacement for our traditional HTTP/HTTPS-based web. I will write a separate article in the future illustrating the problems with our current web and the need that gave rise to IPFS.</p>
+<p>Now, you can install IPFS in several different ways depending upon your use case. In our case, we will be focusing on hosting a static website using IPFS and for us, the best way is to setup the IPFS Desktop Application. You can use the IPFS Command Line Utility also, but it comes bundled with the desktop app.
+Download and install the application for your platform from their official Github page - <a href="https://github.com/ipfs-shipyard/ipfs-desktop#install">IPFS Desktop</a></p>
+<h2 id="step-2-setting-up-your-website">Step 2: Setting Up Your Website</h2>
+<p>Set up your static website for deploying to the internet. Remember, this method only supports STATIC content so make sure your website does not contain any dynamic data. Also, it is advised not to store any Secrets, API Keys or passwords in any of the files on the website. If you do need to use them, store them on a secure server. Read the footnotes on this article for more information about this. In our case, we will set up a simple website with an <em>index.html</em>, an <em>app.js</em> and an <em>app.css</em>.</p>
+<p>If you have your static website ready to go, you do not need to follow along any further for this step and can skip straight to the next step by <a href="#step3">clicking here</a>.</p>
+<ol>
+<li>Create an index.html file and put some content in it. For example:</li>
+</ol>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">&#x3C;!</span><span style="color: #7EE787">DOCTYPE</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">html</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;</span><span style="color: #7EE787">html</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">lang</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"en"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">head</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">meta</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">charset</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"UTF-8"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">meta</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">name</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"viewport"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">content</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"width=device-width, initial-scale=1.0"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">title</span><span style="color: #C9D1D9">>My First IPFS Website&#x3C;/</span><span style="color: #7EE787">title</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">link</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">rel</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"stylesheet"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">href</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">link</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">rel</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"stylesheet"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">href</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;/</span><span style="color: #7EE787">head</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;</span><span style="color: #7EE787">body</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">nav</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"navbar navbar-default navbar-fixed-top"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">      &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"container"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">        &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"navbar-header"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">type</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"button"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"navbar-toggle collapsed"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">data-toggle</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"collapse"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">data-target</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"#navbar"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">aria-expanded</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"false"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">aria-controls</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"navbar"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"sr-only"</span><span style="color: #C9D1D9">>Toggle navigation&#x3C;/</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"icon-bar"</span><span style="color: #C9D1D9">>&#x3C;/</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"icon-bar"</span><span style="color: #C9D1D9">>&#x3C;/</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"icon-bar"</span><span style="color: #C9D1D9">>&#x3C;/</span><span style="color: #7EE787">span</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;/</span><span style="color: #7EE787">button</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"navbar-brand"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">href</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"#"</span><span style="color: #C9D1D9">>My Website&#x3C;/</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">        &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">        &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">id</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"navbar"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"collapse navbar-collapse"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;</span><span style="color: #7EE787">ul</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"nav nav-tabs"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tablist"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">li</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"presentation"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"active"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              &#x3C;</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">aria-controls</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"home"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">data-toggle</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">href</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"#home"</span><span style="color: #C9D1D9">>Home&#x3C;/</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">li</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">li</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"presentation"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              &#x3C;</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">aria-controls</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"about"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">data-toggle</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">href</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"#about"</span><span style="color: #C9D1D9">>About&#x3C;/</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">li</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">li</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"presentation"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              &#x3C;</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">aria-controls</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"contact"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">data-toggle</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">href</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"#contact"</span><span style="color: #C9D1D9">>Contact&#x3C;/</span><span style="color: #7EE787">a</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">li</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;/</span><span style="color: #7EE787">ul</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">        &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">      &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;/</span><span style="color: #7EE787">nav</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"container"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">      &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"my-website-content"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">        &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab-content"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tabpanel"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab-pane active"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">id</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"home"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">h1</span><span style="color: #C9D1D9">>My First IPFS Website&#x3C;/</span><span style="color: #7EE787">h1</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">p</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"lead"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              Hi there, this is my first website running on IPFS. And the best part?</span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">p</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">h2</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              It's ABSOLUTELY FREE!</span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">h2</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tabpanel"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab-pane"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">id</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"about"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">h1</span><span style="color: #C9D1D9">>About me&#x3C;/</span><span style="color: #7EE787">h1</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">p</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"lead"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              I am great at what I do and that's all you need to know!</span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">p</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">role</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tabpanel"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"tab-pane"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">id</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"contact"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">h1</span><span style="color: #C9D1D9">>Contact Me&#x3C;/</span><span style="color: #7EE787">h1</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;</span><span style="color: #7EE787">p</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">class</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"lead"</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">              Need some help? Contact me.</span></span>
+<span class="line"><span style="color: #C9D1D9">            &#x3C;/</span><span style="color: #7EE787">p</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">          &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">        &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">      &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;/</span><span style="color: #7EE787">div</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">type</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"text/javascript"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">src</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"http://code.jquery.com/jquery-3.5.0.min.js"</span><span style="color: #C9D1D9">>&#x3C;/</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">src</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"</span><span style="color: #C9D1D9">>&#x3C;/</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">    &#x3C;</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">type</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"text/javascript"</span><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">src</span><span style="color: #C9D1D9">=</span><span style="color: #A5D6FF">"/app.js"</span><span style="color: #C9D1D9">>&#x3C;/</span><span style="color: #7EE787">script</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">  &#x3C;/</span><span style="color: #7EE787">body</span><span style="color: #C9D1D9">></span></span>
+<span class="line"><span style="color: #C9D1D9">&#x3C;/</span><span style="color: #7EE787">html</span><span style="color: #C9D1D9">></span></span></code></pre>
+<ol start="2">
+<li>Create an app.css with the following content:</li>
+</ol>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #7EE787">body</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">padding-top</span><span style="color: #C9D1D9">: </span><span style="color: #79C0FF">50</span><span style="color: #FF7B72">px</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span>
+<span class="line"><span style="color: #79C0FF">.my-website-content</span><span style="color: #C9D1D9"> {</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">padding</span><span style="color: #C9D1D9">: </span><span style="color: #79C0FF">40</span><span style="color: #FF7B72">px</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">15</span><span style="color: #FF7B72">px</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #79C0FF">text-align</span><span style="color: #C9D1D9">: </span><span style="color: #79C0FF">center</span><span style="color: #C9D1D9">;</span></span>
+<span class="line"><span style="color: #C9D1D9">}</span></span></code></pre>
+<ol start="3">
+<li>Create an app.js with the following content:</li>
+</ol>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #D2A8FF">$</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'.nav-tabs a'</span><span style="color: #C9D1D9">).</span><span style="color: #D2A8FF">click</span><span style="color: #C9D1D9">(</span><span style="color: #FF7B72">function</span><span style="color: #C9D1D9"> (</span><span style="color: #FFA657">e</span><span style="color: #C9D1D9">) {</span></span>
+<span class="line"><span style="color: #C9D1D9">  e.</span><span style="color: #D2A8FF">preventDefault</span><span style="color: #C9D1D9">()</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span><span style="color: #D2A8FF">$</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">this</span><span style="color: #C9D1D9">).</span><span style="color: #D2A8FF">tab</span><span style="color: #C9D1D9">(</span><span style="color: #A5D6FF">'show'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">})</span></span></code></pre>
+<p>Now that we are done setting up our static website, we can focus on the fun part of uploading it to the Internet… for FREE!</p>
+<div id="step3">
+<h2 id="step-3-hosting-your-website-on-ipfs">Step 3: Hosting Your Website on IPFS</h2>
+<p>Now we add our site to IPFS. Let’s say the root directory of your website is <em>mysite</em> (for this tutorial), i.e, all your files are in the path <em>mysite/</em> (ex. <em>mysite/index.html</em>, <em>mysite/app.css</em>, etc.).  Open up a terminal just outside the root directory of your website and type:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">ipfs add -r my-site/</span></span></code></pre>
+<p>This will generate a lot of hashes related to all your files. This will look something like this:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">added QmQiQSt4dKVFvi1zkYbrBWgX8CpasLmzux6daseoDq1Qc mysite/index.html</span></span>
+<span class="line"><span style="color: #C9D1D9">added QmQtFm6VcLdyMa6RqWESPgXsqmiaJ48RXrLFXkPPtfkni mysite/app.css</span></span>
+<span class="line"><span style="color: #C9D1D9">added QmZA2UBTwnhcLv66fARL9UV8W8a9ZA4iwTLcgUCsB1u1yW mysite/app.js</span></span>
+<span class="line"><span style="color: #C9D1D9">added QmPhdfcGJaQJnZu3AKn8NoiomDwDCRBicfqPt1YRqJBCz mysite</span></span></code></pre>
+<p>The only hash we are interested in is the last one.
+This will give us a link to our website. We will also use this hash to publish our site on IPNS in the next step, so keep it handy.
+Go ahead and open up your favourite web browser and type the following URL in the address bar:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">https://ipfs.io/ipfs/&#x3C;YOUR_FOLDER_HASH></span></span></code></pre>
+<p>where, &#x3C;YOUR_FOLDER_HASH> represents the last hash (next to the root folder name) obtained using the previous command. You will see your site up and running. Smooth!</p>
+<p>However, you will soon discover that every time you update some little code in your website, you are presented with a new hash upon adding them to IPFS. In order to avoid this, we have to use an IPNS Peer ID which is described in the next step.</p>
+</div>
+<h2 id="step-4-obtaining-a-permanent-link-using-ipns">Step 4: Obtaining a permanent link (using IPNS)</h2>
+<p>The goal is to obtain a permanent link to your website that is not affected by any updates you make to your website. This can be done using IPNS. Open up the terminal (if not already open). Then, using the hash obtained in the previous step, create an IPNS Peer ID by typing in:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">ipfs name publish </span><span style="color: #FF7B72">&#x3C;</span><span style="color: #C9D1D9">YOUR_FOLDER_HASH</span><span style="color: #FF7B72">></span></span></code></pre>
+<p>This will output something similar to this:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #C9D1D9">Published to QmYtnfsf6vfcFDeZz1NTZyEXTixjjUnUS6UaPdMSsUBWxs: /ipfs/QmPhdfcGJaQJnZu3AKn8NoiomDwDCRBicfqPt1YRqJBCz</span></span></code></pre>
+<p>The Peer ID in the above output is the one appearing right next to the words “Published to” (i.e, <em>QmYtnfsf6vfcFDeZz1NTZyEXTixjjUnUS6UaPdMSsUBWxs</em> in this case). Copy this and paste it in your browser with the URL format as follows:</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #c9d1d9">https://ipfs.io/ipns/&#x3C;YOUR_PEER_ID></span></span></code></pre>
+<p>Now every time you need to update your website just rerun the commands in Step 3 and Step 4. You will see that your Peer ID remains the same and you can access the updated website with the above URL.</p>
+<h2 id="footnotes">Footnotes</h2>
+<p>IPFS is not magic (although it’s pretty close). Although it is envisioned to be a capable replacement for the HTTP protocol we use today, it is far from being perfect. I feel that it is my responsibility to inform the readers about the deal that they sign up for when using IPFS to host their website. This is why I have written this extra paragraph. People who got what they came for are welcome to stop reading and go build something amazing!</p>
+<p>For those of you who need to know some more before you can start transfering you website to IPFS, here are some pros and cons you will likely be enjoying (… or not).</p>
+<ul>
+<li>Your website may take longer to become available throughout your target region. This is because it takes time for content to be distributed to a considerably large enough network of nodes to be readily available at locations logically further away from your own node. In short, you might see delays in updates taking effect.</li>
+<li>Your website and/or updates to the same may not be available at all. This is a minor problem. The reason for this is that if the nodes carrying your data in transit suddenly all break down at once, and your node is not functional at the same time, the data in transit is lost forever and so is your website/update. The chances of that happening however, are slim to none and while it can happen, it is very unlikely. For the more savvy readers, check out <a href="https://filecoin.io/">Filecoin</a> that aims to solve this problem altogether.</li>
+<li>Your usage rate is doubled. This means that you will have to forfeit more data when uploading larger content that you would need to when using the traditional HTTPS protocol. This is because IPFS is a distributed system and adhering to the principles of the same, you need to give in order to get, i.e, you distribute content for others so that they distribute content for you. This means your usage is more than you would normally expect.</li>
+<li>Your content is distributed faster! Yes, it has been seen that hosting your site on IPFS gives you almost an instant 80% speed boost to loading times. This is because the content is distributed unlike the traditional centralized server systems. This means, when your visitor needs access, if any of their neighbouring nodes have already accessed your site, they will serve up the files to your visitor for you! That’s not the only reason. There are some more. But those are beyond the scope of this article.</li>
+<li>Finally, you are limited only to static sites when hosting with IPFS and IPNS. There are ways to get around this using Remote Channels and whatnots but those are beyond this article. We will try to tackle this problem in an upcoming article. In the meantime, if you really want to host your dynamic site on The New Internet, there is a ready-made solution for you - The <a href="https://infura.io/">Infura API</a> might just be what you are looking for. They also ensure your data remains available and on top of that, have a free tier to get you started on zero cost and scale as you need. I have not personally tried it so I cannot guarantee anything but it looks good to go.</li>
+</ul>
+<p>Thanks for reading.</p>
+<p><strong>Attributions</strong></p>
+<p>Resources used:</p>
+<ul>
+<li><a href="https://www.pexels.com/photo/information-sign-on-shelf-251225/">Photo</a> by Tranmautritam from Pexels</li>
+<li><a href="https://medium.com/coinmonks/how-to-add-site-to-ipfs-and-ipns-f121b4cfc8ee">Article</a> by Jonybang on Coinmonks</li>
+</ul>
+			</article>
+		</main>
+		
+
+<footer class="astro-IQQNAWOR">
+	If you found this information useful, please share 📱. While attribution is not necessary, I would appreciate it a lot. 💖
+	<ul class="social astro-IQQNAWOR">
+		<li class="astro-IQQNAWOR">
+			<a href="mailto:sagnikmodak1118@gmail.com" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#eb4f34" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 4 4 C 2.895 4 2 4.895 2 6 L 2 18 C 2 19.105 2.895 20 4 20 L 20 20 C 21.105 20 22 19.105 22 18 L 22 6 C 22 4.895 21.105 4 20 4 L 4 4 z M 5.5976562 6 L 18.402344 6 L 12 10 L 5.5976562 6 z M 5 8.6269531 L 12 13 L 19 8.6269531 L 19 18 L 5 18 L 5 8.6269531 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://wa.me/7005878172" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#25D365" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://www.linkedin.com/in/sagnik-modak/" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#0077b4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9,17H6.5v-7H9V17z M7.7,8.7c-0.8,0-1.3-0.5-1.3-1.2s0.5-1.2,1.4-1.2c0.8,0,1.3,0.5,1.3,1.2S8.6,8.7,7.7,8.7z M18,17h-2.4v-3.8c0-1.1-0.7-1.3-0.9-1.3	s-1.1,0.2-1.1,1.3c0,0.2,0,3.8,0,3.8h-2.5v-7h2.5v1c0.3-0.6,1-1,2.2-1s2.2,1,2.2,3.2V17z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+	</ul>
+</footer>
+
+	</body></html>

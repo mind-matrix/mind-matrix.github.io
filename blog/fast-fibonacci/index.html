@@ -1,0 +1,267 @@
+<!DOCTYPE html><html class="astro-42CWEBUZ">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v1.0.6">
+
+<!-- Primary Meta Tags -->
+<title>Faster Fibonacci</title>
+<meta name="title" content="Faster Fibonacci">
+<meta name="description" content="Computing Fibonacci numbers in O(1) time with no extra space or pre-computed values.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:3000/blog/fast-fibonacci">
+<meta property="og:title" content="Faster Fibonacci">
+<meta property="og:description" content="Computing Fibonacci numbers in O(1) time with no extra space or pre-computed values.">
+<meta property="og:image" content="http://localhost:3000/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://localhost:3000/blog/fast-fibonacci">
+<meta property="twitter:title" content="Faster Fibonacci">
+<meta property="twitter:description" content="Computing Fibonacci numbers in O(1) time with no extra space or pre-computed values.">
+<meta property="twitter:image" content="http://localhost:3000/placeholder-social.jpg">
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/ecdd0a03.1f5f812b.css" />
+<link rel="stylesheet" href="/assets/06b39622.a4eea500.css" /></head>
+
+	<body class="astro-42CWEBUZ">
+		<header class="astro-USFWIK74">
+	<h2 class="astro-USFWIK74">
+		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;" class="astro-USFWIK74">
+		mind-matrix.github.io
+	</h2>
+	<nav class="astro-USFWIK74">
+		<a href="/" class="astro-USFWIK74 astro-335FQABV">
+	Home
+</a>
+
+		<a href="/blog" class="astro-USFWIK74 astro-335FQABV">
+	Blog
+</a>
+
+		<a href="/about" class="astro-USFWIK74 astro-335FQABV">
+	About
+</a>
+
+		<a href="/downloads" class="astro-USFWIK74 astro-335FQABV">
+	Downloads
+</a>
+
+	</nav>
+</header>
+
+		<main class="astro-42CWEBUZ">
+			<article class="astro-42CWEBUZ">
+				
+				<h1 class="title astro-42CWEBUZ">Faster Fibonacci</h1>
+				<time datetime="2022-12-28T00:00:00.000Z" class="astro-42CWEBUZ">
+					Dec 28, 2022
+				</time>
+				
+				<hr class="astro-42CWEBUZ">
+				<p><strong>TL;DR</strong> You can compute the n-th term of a fibonacci sequence using the lesser-known but very interesting, Binet’s Formula. It goes by this -</p>
+<p>The n-th term in a Fibonacci Sequence F(n) can be expressed as,</p>
+<p>$ F(n) = \lfloor{ \frac{(\frac{1 + \sqrt{5}}{2}) ^ {n+1} - (\frac{1 - \sqrt{5}}{2}) ^ {n+1}}{\sqrt{5}} }\rfloor$</p>
+<p>Here is an implementation of this formula in Python to find the n-th fibonacci number in O(1) time with no extra space or pre-computed values.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> math</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">fibo</span><span style="color: #C9D1D9">(n):</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> math.floor((math.pow((</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> math.sqrt(</span><span style="color: #79C0FF">5</span><span style="color: #C9D1D9">))</span><span style="color: #FF7B72">/</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">, n</span><span style="color: #FF7B72">+</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> math.pow((</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> math.sqrt(</span><span style="color: #79C0FF">5</span><span style="color: #C9D1D9">))</span><span style="color: #FF7B72">/</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">, n</span><span style="color: #FF7B72">+</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">))</span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9">math.sqrt(</span><span style="color: #79C0FF">5</span><span style="color: #C9D1D9">))</span></span></code></pre>
+<h2 id="the-origins-of-the-fibonacci-sequence">The origins of the Fibonacci Sequence</h2>
+<p>Fibonacci was not the first one to come up with the Fibonacci Series and infact, he never claimed he did either. Leonardo Bonacci (born c. 1170) was the son of an Italian customs official Guglielmo Bonacci. He only became popularly known as Fibonacci long after his death when in 1838, Franco-Italian historian Guillaume Libri decided Leonardo was an awefully overused name and decided to just record him as <em>fillius Bonacci</em> (a.k.a the “son” of Bonacci). There was never any doubt that Leonardo was a very talented mathematician. However, his most notable contributions were not so much mathematical formulations but rather a historical account of the mathematical wonders he discovered on his travel accross the Mediterranean. He found that the Hindu-Arabic Numerals were far superior to the Roman Numeral System (they didn’t even have a zero back then?) that was prevalent in Europe at the time. In his book, <em>Liber Abaci</em> he introduced the famous Fibonacci Series to solve a theoretical problem involving Rabbits (which we will discuss later) as an example of what can be achieved using the Indo-Arabic Number System. The Sequence, however, was described as early as 200 B.C. by Indian poet Acharya Pingala on enumerating possible patterns of Sanskrit poetry formed from syllables of two lengths. He called the sequence by the name <strong>mātrāmeru</strong>.</p>
+<h2 id="fibonaccis-incestuous-rabbits">Fibonacci’s Incestuous Rabbits</h2>
+<p>Sorry for the shocking title 😅. So Fibonacci described the Sequence as a solution the following problem -</p>
+<p>Image there are 2 rabbits on a field - one male and one female.</p>
+<ol>
+<li>
+<p>A pair consists of one male and one female rabbit.</p>
+</li>
+<li>
+<p>At the end of each month, a pair mates. The babies are not born for another one month (gestation period).</p>
+</li>
+<li>
+<p>The babies are born at the end of the following month and also always consist of a pair - one male and one female - who may reproduce from the next month onwards.</p>
+</li>
+</ol>
+<p>Ignoring the horrid conditions under which these ignorant or vile (could be either) rabbits are reproducing, we can conclude the following pattern -</p>
+<ol>
+<li>
+<p>Let’s call the first pair of rabbits Pair 1.</p>
+</li>
+<li>
+<p>At the start (let’s call it end of month 0), there’s only Pair 1.</p>
+</li>
+<li>
+<p>At the end of month 1, Pair 1 mates but there’s no newborns. Now there are 1 pair(s) of rabbits.</p>
+</li>
+<li>
+<p>At the end of month 2, Pair 1 produces Pair 2 and mates again. Now there are 2 pair(s) of rabbits.</p>
+</li>
+<li>
+<p>At the end of month 3, Pair 1 produces another pair - let’s call that Pair 3 - and mates yet again (by God are mommy and daddy busy!) and Pair 2 mates for the first time. Now there are 3 pair(s) of rabbits.</p>
+</li>
+<li>
+<p>At the end of month 4, Pair 1 produces yet another pair named Pair 4 while Pair 2 also produces their first pair named Pair 5 and in other news, Pair 3 just mated (no babies yet). So now there are 5 pair(s) of rabbits on the field.</p>
+</li>
+</ol>
+<p>I assume you already see the pattern here. Under these conditions, the number of rabbits on the field at the end of month <em>n</em> can be described as -</p>
+<p>$ F_n = F_{n-1} + F_{n-2} $</p>
+<p>which is, as you know, the famous Fibonacci Sequence.</p>
+<h2 id="pingalas-syllables">Pingala’s Syllables</h2>
+<p>Let’s try again with a less * ahem * graphic example. In the Sanskrit Prosody, there are 2 types of syllables distinguished by the duration it takes to utter the sounds -</p>
+<ol>
+<li>
+<p>The Long (L) syllable takes 2 units of time to speak</p>
+</li>
+<li>
+<p>The Short (S) syllable takes 1 unit of time to speak</p>
+</li>
+</ol>
+<p>The question that Acharya Pingala asked is “How many was are there of composing an n-unit prosody using the Long (L) and Short (S) syllables?”</p>
+<p>Let’s work out a couple of these scenarios.</p>
+<ol>
+<li>
+<p>When n = 1, we have only 1 choice i.e., to use a single short syllable (S).</p>
+</li>
+<li>
+<p>When n = 2, we can either go for (SS) or (L).</p>
+</li>
+<li>
+<p>When n = 3, we can go for (SSS), (SL), (LS).</p>
+</li>
+<li>
+<p>When n = 4, we can go for (SSSS), (SSL), (SLS), (LSS), (LL).</p>
+</li>
+</ol>
+<p>Already we see the fibonacci sequence emerge as the number of ways to compose an n-unit prosody using the Long and Short syllables which can be described as -</p>
+<p>$ F_n = F_{n-1} + F_{n-2}$</p>
+<p>This was first described by Pingala in 200 B.C. in his formulation of the solution titled <em>misrau cha</em>.</p>
+<h2 id="gold-bonacci-fibonacci-and-the-golden-ratio">Gold-bonacci (Fibonacci and the Golden Ratio)</h2>
+<p>We have seen how we can describe the Fibonacci Sequence as a relation between it’s consecutive terms. But let us explore this idea further and see if we can come up with some sort of statistic that enables us to make more interesting conclusions about the Fibonacci numbers. In the table below I have listed out the n-th fibonacci number $F_n$ and it’s ratio with the previous number $F_{n-1}$ for n=1,2,…10.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>n</th><th>$F_n$</th><th>$\frac{F_n}{F_{n-1}}$</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1.0</td></tr><tr><td>2</td><td>2</td><td>2.0</td></tr><tr><td>3</td><td>3</td><td>1.5</td></tr><tr><td>4</td><td>5</td><td>1.6667</td></tr><tr><td>5</td><td>8</td><td>1.6</td></tr><tr><td>6</td><td>13</td><td>1.625</td></tr><tr><td>7</td><td>21</td><td>1.6154</td></tr><tr><td>8</td><td>34</td><td>1.6190</td></tr><tr><td>9</td><td>55</td><td>1.6176</td></tr><tr><td>10</td><td>89</td><td>1.6181</td></tr></tbody></table>
+<p>You might be able to see that the value of the ratio seems to be converging towards a certain number between 1.61 and 1.62. We will not go into the rigorous mathematical details to prove it in this post since it is written by me who is by no means a reliable source for mathematical proofs (I’d much rather leave it to the pros - links towards the bottom of the article). But for those of you who are still unconvinced, we can observe a plot of the ratio $ \frac{F_n}{F_{n-1}} $ for n=1 to 500 (that seems reasonable I hope). Convinced yet?</p>
+<p><img src="data:image/png;base64,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" alt=""></p>
+<p>In fact, it turns out that if we take the limit of this ratio to infinity, it equates to the <strong>Golden Ratio</strong>.</p>
+<p>$\lim_{n \to \infty}\frac{F_n}{F_{n-1}} = \varphi$</p>
+<hr>
+<h4 id="factbyte">FACTBYTE</h4>
+<p>The Golden ratio is the ratio of two terms $t_1$ and $t_2$ such that,</p>
+<p>$\frac{\max(t_1,t2)}{\min(t_1,t_2)} = \frac{t_1+t_2}{\max(t_1,t_2)}$ and is denoted as $\varphi$.</p>
+<p>Let us suppose $t_2 \gt t_1$. Then,</p>
+<p>$\varphi = \frac{t_2}{t_1} = \frac{t_1+t_2}{t_2} \implies \frac{t_2}{t_1} = \frac{t_1}{t_2}+\frac{t_2}{t_2} \implies \frac{t_2}{t_1} = \frac{t_1}{t_2}+1 \implies \frac{t_2}{t_1} = 1 + \frac{1}{\frac{t_1}{t_2}}$</p>
+<p>Substituting $\frac{t_2}{t_1}$ with $\varphi$,</p>
+<p>$\varphi = 1+\frac{1}{\varphi} \implies \varphi^2-\varphi-1 = 0 \implies \varphi = \frac{1 + \sqrt{5}}{2},\frac{1 - \sqrt{5}}{2}$</p>
+<p>If we label $\frac{1 + \sqrt{5}}{2}$ as $\varphi$ then $\frac{1 - \sqrt{5}}{2}$ becomes $\frac{1}{\varphi}$ and vice-versa. We will use the former notation in this article.</p>
+<hr>
+<p>The interesting property of the 2 solutions to $\varphi$ is that,</p>
+<p>$ \frac{\varphi - \frac{1}{\varphi}}{\sqrt{5}} = \frac{\frac{1 + \sqrt{5}}{2} - \frac{1 - \sqrt{5}}{2}}{\sqrt{5}} = 1$</p>
+<p>And also,</p>
+<p>$\frac{\varphi ^ 2 - \frac{1}{\varphi} ^ 2}{\sqrt{5}} = \frac{(\frac{1 + \sqrt{5}}{2}) ^ 2 - (\frac{1 - \sqrt{5}}{2}) ^ 2}{\sqrt{5}} = 2$</p>
+<p>And also,</p>
+<p>$\frac{\varphi ^ 3 - \frac{1}{\varphi} ^ 3}{\sqrt{5}} = \frac{(\frac{1 + \sqrt{5}}{2}) ^ 3 - (\frac{1 - \sqrt{5}}{2}) ^ 3}{\sqrt{5}} = 3$</p>
+<p>And also,</p>
+<p>$\frac{\varphi ^ 4 - \frac{1}{\varphi} ^ 4}{\sqrt{5}} = \frac{(\frac{1 + \sqrt{5}}{2}) ^ 4 - (\frac{1 - \sqrt{5}}{2}) ^ 4}{\sqrt{5}} = 5$</p>
+<p>And also I’m dragging it on for too long because we can clearly observe the pattern here. It can be proved (again, not gonna do it here - links at the bottom of the article) that,</p>
+<p>$F_{n} \ge \frac{\varphi ^ {n+1} - \frac{1}{\varphi} ^ {n+1}}{\sqrt{5}} = \frac{(\frac{1 + \sqrt{5}}{2}) ^ {n+1} - (\frac{1 - \sqrt{5}}{2}) ^ {n+1}}{\sqrt{5}} \gt F_{n-1}$</p>
+<p>which means,</p>
+<p>$F_{n} = \lfloor{ \frac{(\frac{1 + \sqrt{5}}{2}) ^ {n+1} - (\frac{1 - \sqrt{5}}{2}) ^ {n+1}}{\sqrt{5}} }\rfloor$</p>
+<p>where $F_n$ is the n-th Fibonacci number (starting from n=0, since we are computer-folks 😁). This formula is also know as <strong>Binet’s Formula</strong>.</p>
+<h2 id="what-did-it-cost">What did it cost?</h2>
+<p>Everything. It cost everything less than if we computed it by recursion or any other such method. Recall that for the recursive solution to Fibonacci, the program needs to maintain a stack of the recursive calls in memory which not only consumes space but also takes time (to copy values to the stack). On the other hand, using Binet’s Formula, we can compute the same number in constant time O(1) and the implementation should be pretty straightforward in any language supporting basic maths.</p>
+<h2 id="references-for-nerds">References for N.E.R.D.S</h2>
+<p><a href="https://en.wikipedia.org/wiki/Golden_ratio">Golden ratio - Wikipedia</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number - Wikipedia</a></p>
+<p><a href="https://www.youtube.com/watch?v=gTQeVlDsAi0">The “Fibonacci” Sequence Was Actually Discovered In India 1000 Years Earlier - YouTube</a></p>
+<p><a href="http://www.milefoot.com/math/discrete/sequences/binetformula.htm#:~:text=The%20explicit%20formula%20for%20the,the%20first%20to%20use%20it.">A Proof of Binet’s Formula (milefoot.com)</a></p>
+			</article>
+		</main>
+		
+
+<footer class="astro-IQQNAWOR">
+	If you found this information useful, please share 📱. While attribution is not necessary, I would appreciate it a lot. 💖
+	<ul class="social astro-IQQNAWOR">
+		<li class="astro-IQQNAWOR">
+			<a href="mailto:sagnikmodak1118@gmail.com" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#eb4f34" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 4 4 C 2.895 4 2 4.895 2 6 L 2 18 C 2 19.105 2.895 20 4 20 L 20 20 C 21.105 20 22 19.105 22 18 L 22 6 C 22 4.895 21.105 4 20 4 L 4 4 z M 5.5976562 6 L 18.402344 6 L 12 10 L 5.5976562 6 z M 5 8.6269531 L 12 13 L 19 8.6269531 L 19 18 L 5 18 L 5 8.6269531 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://wa.me/7005878172" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#25D365" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://www.linkedin.com/in/sagnik-modak/" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#0077b4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9,17H6.5v-7H9V17z M7.7,8.7c-0.8,0-1.3-0.5-1.3-1.2s0.5-1.2,1.4-1.2c0.8,0,1.3,0.5,1.3,1.2S8.6,8.7,7.7,8.7z M18,17h-2.4v-3.8c0-1.1-0.7-1.3-0.9-1.3	s-1.1,0.2-1.1,1.3c0,0.2,0,3.8,0,3.8h-2.5v-7h2.5v1c0.3-0.6,1-1,2.2-1s2.2,1,2.2,3.2V17z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+	</ul>
+</footer>
+
+	</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html><html class="astro-42CWEBUZ">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v1.0.6">
+
+<!-- Primary Meta Tags -->
+<title>Compression</title>
+<meta name="title" content="Compression">
+<meta name="description" content="Ranking compression algorithms and Silicon Valley's Pied Piper Compression">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:3000/blog/compression">
+<meta property="og:title" content="Compression">
+<meta property="og:description" content="Ranking compression algorithms and Silicon Valley's Pied Piper Compression">
+<meta property="og:image" content="http://localhost:3000/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://localhost:3000/blog/compression">
+<meta property="twitter:title" content="Compression">
+<meta property="twitter:description" content="Ranking compression algorithms and Silicon Valley's Pied Piper Compression">
+<meta property="twitter:image" content="http://localhost:3000/placeholder-social.jpg">
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/ecdd0a03.1f5f812b.css" />
+<link rel="stylesheet" href="/assets/06b39622.a4eea500.css" /></head>
+
+	<body class="astro-42CWEBUZ">
+		<header class="astro-USFWIK74">
+	<h2 class="astro-USFWIK74">
+		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;" class="astro-USFWIK74">
+		mind-matrix.github.io
+	</h2>
+	<nav class="astro-USFWIK74">
+		<a href="/" class="astro-USFWIK74 astro-335FQABV">
+	Home
+</a>
+
+		<a href="/blog" class="astro-USFWIK74 astro-335FQABV">
+	Blog
+</a>
+
+		<a href="/about" class="astro-USFWIK74 astro-335FQABV">
+	About
+</a>
+
+		<a href="/downloads" class="astro-USFWIK74 astro-335FQABV">
+	Downloads
+</a>
+
+	</nav>
+</header>
+
+		<main class="astro-42CWEBUZ">
+			<article class="astro-42CWEBUZ">
+				
+				<h1 class="title astro-42CWEBUZ">Compression</h1>
+				<time datetime="2017-12-28T00:00:00.000Z" class="astro-42CWEBUZ">
+					Dec 28, 2017
+				</time>
+				
+				<hr class="astro-42CWEBUZ">
+				<p>The other day, I was watching Silicon Valley on HBO where they were talking about Compression. As the fans will recall, Richard Hendricks invented a compression algorithm so powerful that it can compress your data to the extent where you can access them <em>“instantly”</em> on any device with the most primitive network connections - thus, <em>making the world, a better place</em>. The compression algorithm, named <strong>Pied Piper</strong>, is said to have a Weissman Score of 2.9 in Season 1 and later improved to a score of 5.2 on Season 3. So what is all this? Let’s examine.</p>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1597060255/html_fxm6su.jpg" alt="silicon-valley-s1-meme"></p>
+<h2 id="compression-algorithms">Compression Algorithms</h2>
+<p>Compression can be defined as the process of reducing the number of bits required to represent a data. How can this be achieved? Let us take an example. Say we have the following text -</p>
+<blockquote>
+<p> ABBBCCBABAABCCAABA</p>
+</blockquote>
+<p>This data can also be represented as -</p>
+<blockquote>
+<p>A2B1CBAB1AB1C1ABA</p>
+</blockquote>
+<p>The original string was 18 characters long and the new string is 17 characters long. So that is a compressed string. We can translate the compressed string back into the original string by substituting the numbers appearing before a character the number times with the character. For example, <strong>2</strong>B becomes <strong>BB</strong>B and so on. Although this is not of much use to us, it provides a good understanding of what a compression algorithm tries to achieve.</p>
+<p>However, data is not always structured and does not always exhibit repetative patterns. The best compression algorithms on the market prey on just that - repetative patterns in the data. But compression of data varies depending upon what the data represents too. For instance, an algorithm designed for text compression cannot be expected to provide good image compression because the two types of data differ by a wide margin.</p>
+<p>When we deal with compression, we classify algorithms into 2 broad categories:</p>
+<ol>
+<li><strong>Lossy Compression</strong> - Whereby the original data is not guaranteed to be kept exact throughout the compression/decompression cycle, i.e, a part of the data may be lost. This is mostly used in images where an average color of a block of pixels may be applied to all the pixels in the block thereby reducing the file size but also (almost unnoticeable) losing the pixel data from each pixel in the block (ex. JPEG).</li>
+<li><strong>Lossless Compression</strong> - Whereby the original data is retained to the bit throughout the compression/decompression cycle. Usually used in text compression.</li>
+</ol>
+<p>So let’s get down to the various data compressions -</p>
+<h3 id="top-10-compression-algorithms-">Top 10 Compression Algorithms -</h3>
+<ol>
+<li><strong>BZIP2</strong> - The BZIP2 program is a free and open-source general purpose single-file compression algorithm developed and maintained by <a href="https://en.wikipedia.org/wiki/Julian_Seward">Julian Seward</a>. This program offers a better compression ratio at the cost of speed. It may as well be the slowest among the top existing text compression algorithms. <a href="https://en.wikipedia.org/wiki/Bzip2">Read more</a></li>
+<li><strong>DEFLATE</strong> - This is a lossless data compression algorithm first developed and introduced in PKZIP v2.0 by <a href="https://en.wikipedia.org/wiki/Phil_Katz">Phil Katz</a>. This compression algorithm compresses the raw data into blocks with 3-bit headers. While this achieves a lower compression ratio as compared to BZIP2 accross multiple test cases, it does have much higher compression speed. <a href="https://en.wikipedia.org/wiki/DEFLATE">Read more</a></li>
+<li><strong>LZMA</strong> - The Lempel-Ziv-Markov chain Algorithm is a lossless data compression algorithm for general purpose use that was first introduced in the popular free compression tool <em><strong>7-Zip</strong></em>. This offers a comparable compression ratio to BZIP2 while also keeping the decompression speed comparable to that of DEFLATE. <a href="https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Markov_chain_algorithm">Read more</a></li>
+<li><strong>LZHAM</strong> - The LZMA compression tool was good. But it made a decent tradeoff in terms of speed for achieving higher compression ratios. The <em>LZHAM</em> compression tool optimizes this tradeoff for a notably fast decompression speed. <a href="https://github.com/richgel999/lzham_codec/blob/master/README.md">Read more</a></li>
+<li><strong>GZIP</strong> - This is by far the most widely used compression algorithm for all web apps on the internet. The main reason for this is that it has the fastest compression/decompression speed although a little short on compression ratio among all the existing general purpose compression programs. It is also found to be the most reliable compression algorithm. <a href="https://en.wikipedia.org/wiki/Gzip">Read more</a></li>
+<li><strong>ZLIB</strong> - The ZLIB Compression algorithm is lossless data compression algorithm that holds much similarity to the GZIP compression algorithm. However, it achieves greater compression ratio essentially by stripping off the unnecessary headers and footers in the GZIP compression. It is also a part of the three HTTP compression standards but is not widely used due to faulty support in Internet Explorer. It is however, used by gaming consoles like PS3, Wii U, Xbox 360, etc. <a href="https://en.wikipedia.org/wiki/Zlib">Read more</a></li>
+<li><strong>PAQ</strong> - The PAQ is a series of compression algorithms that have achieved massive benchmark compressions over the years. While these remain very resource intensive, they also offer an equally astonishing compression ratio. A notable of a PAQ algorithm (<em>PAQ6</em>) was in the KGB Archiver compression/decompression tool by Tomasz Pawlak. <a href="https://en.wikipedia.org/wiki/PAQ">Read more</a></li>
+<li><strong>CMIX</strong> - This is a new lossless data compression tool that aims to achieve benchmark compression ratios at the cost of high CPU/Memory usage. Developed and maintained by Byron Knoll, so far it has achieved great success. <a href="http://www.byronknoll.com/cmix.html">Read more</a></li>
+<li><strong>Zopfli</strong> - Developed and maintained by Google, the Zopfli compressor achieves a great compression ratio by combining existing DEFLATE, GZIP and ZLIB compression algorithms at the expense of compression time. This can be thought of as an optimal mix of benchmark compression algorithms and fast compression algorithms. More recently, Google announced a new data compression algorithm that surpasses Zopfli. <a href="https://en.wikipedia.org/wiki/Zopfli">Read more</a></li>
+<li><strong>Brotli</strong> - While Zopfli was a mix of existing data compression tools, Brotli is a whole new tool built from the scratch. It fares better than most existing general purpose compression algorithms achieving optimal scores in all aspects. Google even released a benchmark test between Brotli and the other top compression algorithms which you can view <a href="http://www.gstatic.com/b/brotlidocs/brotli-2015-09-22.pdf">here</a>. Google plans to integrate this compression standard in the web platform. <a href="https://opensource.googleblog.com/2015/09/introducing-brotli-new-compression.html">Read more</a></li>
+</ol>
+<h2 id="the-weissman-score">The Weissman Score</h2>
+<p>Throughout the series, Silicon Valley, the characters use the Weissman Score to judge the compression algorithm. But, what is this Weissman Score? Is that really a thing? Turns out it is. It was formulated by  <a href="https://en.wikipedia.org/wiki/Tsachy_Weissman" title="Tsachy Weissman">Tsachy Weissman</a>, a professor at Stanford, and Vinith Misra, a graduate student, under the request of the producers of Silicon Valley.</p>
+<p>As you now may understand, no one compression algorithm can be called <em>“The best”</em> because it always boils down to a tradeoff between speed and compression ratio. However, in order to convey this to a general audience, we need a term of art. The Weissman Score is just that. It factors in both the compression ratio and the speed to determine which of two compression algorithms are better and by how far. While I cannot vouch for it’s validity, it does provide a better way to explain to the audience how awesome <em>“Pied Piper’s compression”</em> is.</p>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1597060293/weissman_mn5luy.png" alt="weissman-score-formula"></p>
+<p>With the help of <em>7-zip</em>, <em>Zopfli</em> and <em>ptime</em>, I was able to calculate the <strong>Weissman score</strong> of some of the top compression algorithms. Taking the <strong>Zip</strong> compression as the standard for comparison and alpha as 1.0, this is a table of my results.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Format</th><th>r</th><th>T (in seconds)</th><th>W</th></tr></thead><tbody><tr><td>Zip</td><td>1.842955</td><td>0.413</td><td>1.000000</td></tr><tr><td>7-Zip</td><td>1.772706</td><td>0.603</td><td>1.681566</td></tr><tr><td>Gzip</td><td>1.960958</td><td>0.554</td><td>1.593201</td></tr><tr><td>BZip2</td><td>2.055101</td><td>0.395</td><td>1.061615</td></tr><tr><td>Zopfli DEFLATE</td><td>2.001594</td><td>2.046</td><td>-1.341592</td></tr><tr><td>Zopfli GZip</td><td>1.982632</td><td>1.958</td><td>-1.415829</td></tr></tbody></table>
+<p>As is clear from the table, the limitation of this scoring is clearly apparent. Although the standard defines any value for alpha can be used, choosing a value of 1.0 or more can result in negative values of score as in the table above. This limitation is listed on it’s <a href="https://en.wikipedia.org/wiki/Weissman_score">Wikipedia Page</a> in the following words -</p>
+<blockquote>
+<p>Although the value is relative to the standards against which it is compared, the <a href="https://en.wikipedia.org/wiki/Units_of_measurement" title="Units of measurement">unit</a> used to measure the times changes the score (see examples 1 and 2), and the multiplier also can’t have a numeric value of 1 or less, because the logarithm of 1 is 0 (examples 3 and 4), and the logarithm of any value less than 1 is negative (examples 5 and 6); that would result in scores of value 0 (even with changes), undefined, or negative (even if better than positive).</p>
+</blockquote>
+			</article>
+		</main>
+		
+
+<footer class="astro-IQQNAWOR">
+	If you found this information useful, please share 📱. While attribution is not necessary, I would appreciate it a lot. 💖
+	<ul class="social astro-IQQNAWOR">
+		<li class="astro-IQQNAWOR">
+			<a href="mailto:sagnikmodak1118@gmail.com" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#eb4f34" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 4 4 C 2.895 4 2 4.895 2 6 L 2 18 C 2 19.105 2.895 20 4 20 L 20 20 C 21.105 20 22 19.105 22 18 L 22 6 C 22 4.895 21.105 4 20 4 L 4 4 z M 5.5976562 6 L 18.402344 6 L 12 10 L 5.5976562 6 z M 5 8.6269531 L 12 13 L 19 8.6269531 L 19 18 L 5 18 L 5 8.6269531 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://wa.me/7005878172" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#25D365" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://www.linkedin.com/in/sagnik-modak/" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#0077b4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9,17H6.5v-7H9V17z M7.7,8.7c-0.8,0-1.3-0.5-1.3-1.2s0.5-1.2,1.4-1.2c0.8,0,1.3,0.5,1.3,1.2S8.6,8.7,7.7,8.7z M18,17h-2.4v-3.8c0-1.1-0.7-1.3-0.9-1.3	s-1.1,0.2-1.1,1.3c0,0.2,0,3.8,0,3.8h-2.5v-7h2.5v1c0.3-0.6,1-1,2.2-1s2.2,1,2.2,3.2V17z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+	</ul>
+</footer>
+
+	</body></html>

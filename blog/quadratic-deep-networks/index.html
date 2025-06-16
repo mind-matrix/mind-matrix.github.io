@@ -1,0 +1,265 @@
+<!DOCTYPE html><html class="astro-42CWEBUZ">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="generator" content="Astro v1.0.6">
+
+<!-- Primary Meta Tags -->
+<title>Quadratic Deep Networks in Keras</title>
+<meta name="title" content="Quadratic Deep Networks in Keras">
+<meta name="description" content="Dump your boring Dense Layers for the cool new Quadratic Dense Layers">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://localhost:3000/blog/quadratic-deep-networks">
+<meta property="og:title" content="Quadratic Deep Networks in Keras">
+<meta property="og:description" content="Dump your boring Dense Layers for the cool new Quadratic Dense Layers">
+<meta property="og:image" content="http://localhost:3000/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://localhost:3000/blog/quadratic-deep-networks">
+<meta property="twitter:title" content="Quadratic Deep Networks in Keras">
+<meta property="twitter:description" content="Dump your boring Dense Layers for the cool new Quadratic Dense Layers">
+<meta property="twitter:image" content="http://localhost:3000/placeholder-social.jpg">
+
+		
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/ecdd0a03.1f5f812b.css" />
+<link rel="stylesheet" href="/assets/06b39622.a4eea500.css" /></head>
+
+	<body class="astro-42CWEBUZ">
+		<header class="astro-USFWIK74">
+	<h2 class="astro-USFWIK74">
+		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;" class="astro-USFWIK74">
+		mind-matrix.github.io
+	</h2>
+	<nav class="astro-USFWIK74">
+		<a href="/" class="astro-USFWIK74 astro-335FQABV">
+	Home
+</a>
+
+		<a href="/blog" class="astro-USFWIK74 astro-335FQABV">
+	Blog
+</a>
+
+		<a href="/about" class="astro-USFWIK74 astro-335FQABV">
+	About
+</a>
+
+		<a href="/downloads" class="astro-USFWIK74 astro-335FQABV">
+	Downloads
+</a>
+
+	</nav>
+</header>
+
+		<main class="astro-42CWEBUZ">
+			<article class="astro-42CWEBUZ">
+				
+				<h1 class="title astro-42CWEBUZ">Quadratic Deep Networks in Keras</h1>
+				<time datetime="2021-04-20T00:00:00.000Z" class="astro-42CWEBUZ">
+					Apr 20, 2021
+				</time>
+				
+				<hr class="astro-42CWEBUZ">
+				<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1618866682/quad-perceptron_dyuxrn.png" alt="quad_perceptron"></p>
+<p>The past couple of months I have been scrimmaging through dozens of papers for the final research project of my degree. During this time, I have happened across several papers most of which were not directly related to my project but have kindled my interest. So I went ahead and implemented them. Some of these I found really informative  In this series of posts shall share all of these small secrets that I have discovered and any others I may discover in the future, that may be of help to you for your next big project. Today’s topic is <strong>Quadratic Deep Networks</strong></p>
+<h2 id="a-gentle-recap-of-neural-networks">A Gentle Recap of Neural Networks</h2>
+<p>The idea of Neural Networks is contrived from the biological process by which our Nervous System reacts to impulses from the external environment. An impulse triggers a neuro-chemical reaction in the axon of the neuron which then decides whether to transmit a modified signal to the next neuron (fire) or not (not fire). This binary rule of either firing or not firing based on several factors is called the <em>All or None</em> rule. Similar to a biological neuron, a <strong>perceptron</strong> (unit of an Artifical Neural Network) is composed of some weights <span class="math math-inline">w_i</span> and biases <span class="math math-inline">b_i</span> that determine how the input signal <span class="math math-inline">x_i</span> is modified and finally an activation function <span class="math math-inline">\phi</span> that decides whether or not to fire the modified signal</p>
+<p>$s_i = \phi(w_i * x_i + b_i)$</p>
+<p>However, unlike a biological neural network the purpose of an artifical neural network is not to model the human nervous system but to act as a function approximator. The analogy comes from the fact that in a way, the human cognition system can be thought of as being just one giant, enormously powerful and complex function approximator. But that is for your CS or philosophy professor to explain so I’ll leave it at that.</p>
+<h2 id="shortcoming-of-the-traditional-neuron">Shortcoming of the traditional neuron</h2>
+<p>Although the idea of a neuron stems from the biological make up of our being, it is not used as such. We mostly use neural networks for classifying pictures of cats and dogs or predicting the winningest choices for your next Dream 11 Team (that’s cheating btw). Underneath the pretty looking hood, it’s all just math-y things with math-y equations and formulas. So to understand how a neuron works, we have to look at what a single neuron is doing. Suppose you have to model an equation <span class="math math-inline">f(x) = 10x + 2</span>. What would be the most optimal weights and biases by which you can model the given equation and how many neurons do you need? Easy, right? Just 1 neuron and the weights and biases are <span class="math math-inline">w_1 = 10</span> and <span class="math math-inline">b_1 = 2</span> so the final model <span class="math math-inline">g(x)</span> for <span class="math math-inline">f(x)</span> should stands as,</p>
+<p>$g(x) = w_1x + b_1 = f(x)$</p>
+<p>Now imagine a more complex equation, say a quadratic equation or a cubic equation. It should be evident that a single neuron cannot effectively model such an equation. In fact, it has been proven that the <em>classical model of perceptron</em>, which we have been following, fails spectacularly when it comes to even simple logical equations like the OR Gate or the NOR gate. The reason is apparent once you realise that the neuron only models equations that bear resemble to the equation for a line. It has also been proved beyond doubt that for modeling more complex tasks a <strong>Deep Neural Network</strong> is the way to go. A Deep Neural Network is basically just a stack of many layers each of which in turn contains many neurons. This has been shown to be effective in a large number of tasks ranging from modeling mathematical equations to driving cars automatically.</p>
+<h2 id="quadratic-model-of-perceptron">Quadratic Model of Perceptron</h2>
+<p>The Quadratic Model of Perceptron is a novel model that improves upon the classical perceptron model. It is introduced in the paper <strong>Universal Approximation with Quadratic Deep Networks</strong> (Fan et al , 2018). In this blog post, we will implement this model using the Tensorflow 2.4.1 Keras library. Note that this is the Tensorflow version that has been used to run the code blocks below but almost any version from the past couple of years should be good to go.</p>
+<p>Recall that the model for a classical perceptron is,</p>
+<p>$s_i = \phi(w_i * x_i + b_i)$</p>
+<p>In comparison, the model for a Quadratic perceptron is,</p>
+<p>$s_i = \phi( (w_rx^T + b_r)(w_gx^T + b_g) + w_b(x^2)^T + c )$</p>
+<p>[refer to equation 1, Fan et al , 2018]</p>
+<p>which is implemented in code as below -</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> tensorflow </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> tf</span></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> tensorflow.keras layers </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> Layer</span></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> tensorflow.python eager </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> context</span></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> tensorflow.keras </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> initializers, activations</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">QuadDense</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Layer</span><span style="color: #C9D1D9">):</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">__init__</span><span style="color: #C9D1D9">(self, units, activation</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">None</span><span style="color: #C9D1D9">, </span><span style="color: #FF7B72">**</span><span style="color: #C9D1D9">kwargs):</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9">(units) </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">not</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">isinstance</span><span style="color: #C9D1D9">(units, </span><span style="color: #79C0FF">int</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9"> units</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.activation </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> activations.get(activation)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">(QuadDense, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">).</span><span style="color: #79C0FF">__init__</span><span style="color: #C9D1D9">(</span><span style="color: #FF7B72">**</span><span style="color: #C9D1D9">kwargs)</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">build</span><span style="color: #C9D1D9">(self, input_shape):</span></span>
+<span class="line"><span style="color: #C9D1D9">        last_dim </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> input_shape[</span><span style="color: #FF7B72">-</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.w_r </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.add_weight(</span><span style="color: #FFA657">shape</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[last_dim, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units], </span><span style="color: #FFA657">initializer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'normal'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">name</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'w_r'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">trainable</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.w_g </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.add_weight(</span><span style="color: #FFA657">shape</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[last_dim, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units], </span><span style="color: #FFA657">initializer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'normal'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">name</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'w_g'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">trainable</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.w_b </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.add_weight(</span><span style="color: #FFA657">shape</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[last_dim, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units], </span><span style="color: #FFA657">initializer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'normal'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">name</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'w_b'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">trainable</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.b_r </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.add_weight(</span><span style="color: #FFA657">shape</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[</span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units,], </span><span style="color: #FFA657">initializer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'normal'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">name</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'b_r'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">trainable</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.b_g </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.add_weight(</span><span style="color: #FFA657">shape</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[</span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units,], </span><span style="color: #FFA657">initializer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'normal'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">name</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'b_g'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">trainable</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.c </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.add_weight(</span><span style="color: #FFA657">shape</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[</span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.units,], </span><span style="color: #FFA657">initializer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'normal'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">name</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'c'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">trainable</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.built </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">True</span></span>
+<span class="line"><span style="color: #C9D1D9">  </span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">apply_weight</span><span style="color: #C9D1D9">(self, x, w):</span></span>
+<span class="line"><span style="color: #C9D1D9">        rank </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> x.shape.rank</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> rank </span><span style="color: #FF7B72">==</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">or</span><span style="color: #C9D1D9"> rank </span><span style="color: #FF7B72">is</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">None</span><span style="color: #C9D1D9">:</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">isinstance</span><span style="color: #C9D1D9">(x, tf.sparse.SparseTensor):</span></span>
+<span class="line"><span style="color: #C9D1D9">                outputs </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.sparse.sparse_dense_matmul(x, w)</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9">:</span></span>
+<span class="line"><span style="color: #C9D1D9">                outputs </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.linalg.matmul(x, w)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">else</span><span style="color: #C9D1D9">:</span></span>
+<span class="line"><span style="color: #C9D1D9">            outputs </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.tensordot(x, w, [[rank </span><span style="color: #FF7B72">-</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">], [</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">]])</span></span>
+<span class="line"><span style="color: #C9D1D9">            </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">not</span><span style="color: #C9D1D9"> context.executing_eagerly():</span></span>
+<span class="line"><span style="color: #C9D1D9">                shape </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> x.shape.as_list()</span></span>
+<span class="line"><span style="color: #C9D1D9">                output_shape </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> shape[:</span><span style="color: #FF7B72">-</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">] </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> [w.shape[</span><span style="color: #FF7B72">-</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">]]</span></span>
+<span class="line"><span style="color: #C9D1D9">                outputs.set_shape(output_shape)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> outputs</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">call</span><span style="color: #C9D1D9">(self, x):</span></span>
+<span class="line"><span style="color: #C9D1D9">        x_r </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.apply_weight(x, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.w_r) </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.b_r</span></span>
+<span class="line"><span style="color: #C9D1D9">        x_g </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.apply_weight(x, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.w_g) </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.b_g</span></span>
+<span class="line"><span style="color: #C9D1D9">        x_b </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.apply_weight(x</span><span style="color: #FF7B72">**</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.w_b)</span></span>
+<span class="line"><span style="color: #C9D1D9">        x </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.multiply(x_r, x_g) </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> x_b </span><span style="color: #FF7B72">+</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.c</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">if</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">not</span><span style="color: #C9D1D9"> (</span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.activation </span><span style="color: #FF7B72">is</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">None</span><span style="color: #C9D1D9">):</span></span>
+<span class="line"><span style="color: #C9D1D9">            x </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.activation(x)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> x</span></span></code></pre>
+<h2 id="example-dataset---the-mnist-fashion-dataset">Example Dataset - The MNIST Fashion Dataset</h2>
+<p>The MNIST Fashion Dataset is a particularly hard dataset to model. We will use the AutoEncoder Architecture to design a model for this dataset. This part is not written by me and infact, is taken from the Keras Blog as is with some minor modifications.</p>
+<h3 id="loading-the-dataset">Loading the Dataset</h3>
+<p>First we will load the dataset into memory.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> matplotlib.pyplot </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> plt</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> numpy </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> np</span></span>
+<span class="line"><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> pandas </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> pd</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> sklearn.metrics </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> accuracy_score, precision_score, recall_score</span></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> sklearn.model_selection </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> train_test_split</span></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> tensorflow.keras </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> layers, losses, Model, Input</span></span>
+<span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> tensorflow.keras.datasets </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> fashion_mnist</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">(x_train, _), (x_test, _) </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> fashion_mnist.load_data()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">x_train </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> x_train.astype(</span><span style="color: #A5D6FF">'float32'</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">255</span><span style="color: #C9D1D9"> </span></span>
+<span class="line"><span style="color: #C9D1D9">x_test </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> x_test.astype(</span><span style="color: #A5D6FF">'float32'</span><span style="color: #C9D1D9">) </span><span style="color: #FF7B72">/</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">255</span><span style="color: #C9D1D9"> </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #79C0FF">print</span><span style="color: #C9D1D9"> (</span><span style="color: #A5D6FF">'############ DATASET: fashion_mnist ############'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #79C0FF">print</span><span style="color: #C9D1D9"> (</span><span style="color: #A5D6FF">'train shape: '</span><span style="color: #C9D1D9">, x_train.shape)</span></span>
+<span class="line"><span style="color: #79C0FF">print</span><span style="color: #C9D1D9"> (</span><span style="color: #A5D6FF">'test shape: '</span><span style="color: #C9D1D9">, x_test.shape)</span></span></code></pre>
+<div class="code output">
+############ DATASET: fashion_mnist ############
+<p>train shape:  (60000, 28, 28)</p>
+<p>test shape:  (10000, 28, 28)</p>
+</div>
+<h3 id="defining-hyper-parameters">Defining Hyper-parameters</h3>
+<p>Then we will define some Hyper-parameters. The <strong>LATENT_DIM</strong> hyper-parameter represents the dimensionality of the encoded input representation and can chosen arbitrarily  We choose to use the <strong>LATENT_DIM</strong> value, and values of all the other hyper-parameters, as prescribed in the official blog post.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #79C0FF">LATENT_DIM</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">64</span></span>
+<span class="line"><span style="color: #79C0FF">EPOCHS</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">10</span></span>
+<span class="line"><span style="color: #79C0FF">BATCH_SIZE</span><span style="color: #C9D1D9"> </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">32</span></span></code></pre>
+<h3 id="classical-dense-layer-based-autoencoder">Classical Dense Layer-based AutoEncoder</h3>
+<p>The following code block is the typical AutoEncoder model based on the classical model of the perceptron. The Dense layer is a Keras Layer corresponding to the classical version of our QuadDense implementation.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">DenseAutoEncoder</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Model</span><span style="color: #C9D1D9">):</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">__init__</span><span style="color: #C9D1D9">(self, latent_dim):</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">(DenseAutoEncoder, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">).</span><span style="color: #79C0FF">__init__</span><span style="color: #C9D1D9">()</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.latent_dim </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> latent_dim   </span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.encoder </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.keras.Sequential([</span></span>
+<span class="line"><span style="color: #C9D1D9">          layers.Flatten(),</span></span>
+<span class="line"><span style="color: #C9D1D9">          layers.Dense(latent_dim, </span><span style="color: #FFA657">activation</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'relu'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">        ])</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.decoder </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.keras.Sequential([</span></span>
+<span class="line"><span style="color: #C9D1D9">          layers.Dense(</span><span style="color: #79C0FF">784</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">activation</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'sigmoid'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">          layers.Reshape((</span><span style="color: #79C0FF">28</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">28</span><span style="color: #C9D1D9">))</span></span>
+<span class="line"><span style="color: #C9D1D9">        ])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">call</span><span style="color: #C9D1D9">(self, x):</span></span>
+<span class="line"><span style="color: #C9D1D9">        encoded </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.encoder(x)</span></span>
+<span class="line"><span style="color: #C9D1D9">        decoded </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.decoder(encoded)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> decoded</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">dense_autoencoder </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> DenseAutoEncoder(</span><span style="color: #79C0FF">LATENT_DIM</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">dense_autoencoder.compile(</span><span style="color: #FFA657">optimizer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'adam'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">loss</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">losses.MeanSquaredError(), </span><span style="color: #FFA657">metrics</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[</span><span style="color: #A5D6FF">'accuracy'</span><span style="color: #C9D1D9">])</span></span>
+<span class="line"><span style="color: #C9D1D9">dense_ae_hist </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> dense_autoencoder.fit(x_train, x_train,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                        </span><span style="color: #FFA657">epochs</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">EPOCHS</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                        </span><span style="color: #FFA657">shuffle</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                        </span><span style="color: #FFA657">batch_size</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">BATCH_SIZE</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                        </span><span style="color: #FFA657">validation_data</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">(x_test, x_test))</span></span></code></pre>
+<h3 id="quadratic-dense-layer-based-autoencoder">Quadratic Dense Layer-based AutoEncoder</h3>
+<p>Now let us run the same task but with another AutoEncoder model which is essentially the same as the above model except that instead of the classical Dense layers, we use the QuadDense Layer that we have implemented before.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">class</span><span style="color: #C9D1D9"> </span><span style="color: #FFA657">QuadDenseAutoEncoder</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">Model</span><span style="color: #C9D1D9">):</span></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">__init__</span><span style="color: #C9D1D9">(self, latent_dim):</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">super</span><span style="color: #C9D1D9">(QuadDenseAutoEncoder, </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">).</span><span style="color: #79C0FF">__init__</span><span style="color: #C9D1D9">()</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.latent_dim </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> latent_dim   </span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.encoder </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.keras.Sequential([</span></span>
+<span class="line"><span style="color: #C9D1D9">          layers.Flatten(),</span></span>
+<span class="line"><span style="color: #C9D1D9">          QuadDense(latent_dim, </span><span style="color: #FFA657">activation</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'relu'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">        ])</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.decoder </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> tf.keras.Sequential([</span></span>
+<span class="line"><span style="color: #C9D1D9">          QuadDense(</span><span style="color: #79C0FF">784</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">activation</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'sigmoid'</span><span style="color: #C9D1D9">),</span></span>
+<span class="line"><span style="color: #C9D1D9">          layers.Reshape((</span><span style="color: #79C0FF">28</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">28</span><span style="color: #C9D1D9">))</span></span>
+<span class="line"><span style="color: #C9D1D9">        ])</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">    </span><span style="color: #FF7B72">def</span><span style="color: #C9D1D9"> </span><span style="color: #D2A8FF">call</span><span style="color: #C9D1D9">(self, x):</span></span>
+<span class="line"><span style="color: #C9D1D9">        encoded </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.encoder(x)</span></span>
+<span class="line"><span style="color: #C9D1D9">        decoded </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> </span><span style="color: #79C0FF">self</span><span style="color: #C9D1D9">.decoder(encoded)</span></span>
+<span class="line"><span style="color: #C9D1D9">        </span><span style="color: #FF7B72">return</span><span style="color: #C9D1D9"> decoded</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">quad_dense_autoencoder </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> QuadDenseAutoEncoder(</span><span style="color: #79C0FF">LATENT_DIM</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">quad_dense_autoencoder.compile(</span><span style="color: #FFA657">optimizer</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'adam'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">loss</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">losses.MeanSquaredError(), </span><span style="color: #FFA657">metrics</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">[</span><span style="color: #A5D6FF">'accuracy'</span><span style="color: #C9D1D9">])</span></span>
+<span class="line"><span style="color: #C9D1D9">quad_ae_hist </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> quad_dense_autoencoder.fit(x_train, x_train,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                            </span><span style="color: #FFA657">epochs</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">EPOCHS</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                            </span><span style="color: #FFA657">batch_size</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">BATCH_SIZE</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                            </span><span style="color: #FFA657">shuffle</span><span style="color: #FF7B72">=</span><span style="color: #79C0FF">True</span><span style="color: #C9D1D9">,</span></span>
+<span class="line"><span style="color: #C9D1D9">                                            </span><span style="color: #FFA657">validation_data</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">(x_test, x_test))</span></span></code></pre>
+<h3 id="comparison-of-results">Comparison of Results</h3>
+<p>Let us compare the results of the classical Dense Layer-based AutoEncoder and the novel QuadDense Layer-based AutoEncoder.</p>
+<pre is:raw="" class="astro-code" style="background-color: #0d1117; overflow-x: auto;"><code><span class="line"><span style="color: #FF7B72">from</span><span style="color: #C9D1D9"> matplotlib </span><span style="color: #FF7B72">import</span><span style="color: #C9D1D9"> pyplot </span><span style="color: #FF7B72">as</span><span style="color: #C9D1D9"> plt</span></span>
+<span class="line"><span style="color: #FF7B72">%</span><span style="color: #C9D1D9">matplotlib inline</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">fig, axs </span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9"> plt.subplots(</span><span style="color: #79C0FF">2</span><span style="color: #C9D1D9">, </span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">figsize</span><span style="color: #FF7B72">=</span><span style="color: #C9D1D9">(</span><span style="color: #79C0FF">8</span><span style="color: #C9D1D9">,</span><span style="color: #79C0FF">10</span><span style="color: #C9D1D9">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">].plot(dense_ae_hist.history[</span><span style="color: #A5D6FF">'val_accuracy'</span><span style="color: #C9D1D9">])</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">].plot(quad_ae_hist.history[</span><span style="color: #A5D6FF">'val_accuracy'</span><span style="color: #C9D1D9">])</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">].set_title(</span><span style="color: #A5D6FF">'Comparison of Model Validation Accuracy'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">].set(</span><span style="color: #FFA657">xlabel</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'epoch'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">ylabel</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'accuracy'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">].plot(dense_ae_hist.history[</span><span style="color: #A5D6FF">'val_loss'</span><span style="color: #C9D1D9">])</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">].plot(quad_ae_hist.history[</span><span style="color: #A5D6FF">'val_loss'</span><span style="color: #C9D1D9">])</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">].set_title(</span><span style="color: #A5D6FF">'Comparison of Model Validation Loss (MSE)'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">1</span><span style="color: #C9D1D9">].set(</span><span style="color: #FFA657">xlabel</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'epoch'</span><span style="color: #C9D1D9">, </span><span style="color: #FFA657">ylabel</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'loss'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">].legend([</span><span style="color: #A5D6FF">'Accuracy: Dense AutoEncoder'</span><span style="color: #C9D1D9">, </span><span style="color: #A5D6FF">'Accuracy: Quadratic Dense AutoEncoder'</span><span style="color: #C9D1D9">], </span><span style="color: #FFA657">loc</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'upper left'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"><span style="color: #C9D1D9">axs[</span><span style="color: #79C0FF">0</span><span style="color: #C9D1D9">].legend([</span><span style="color: #A5D6FF">'MSE Loss: Dense AutoEncoder'</span><span style="color: #C9D1D9">, </span><span style="color: #A5D6FF">'MSE Loss: Quadratic Dense AutoEncoder'</span><span style="color: #C9D1D9">], </span><span style="color: #FFA657">loc</span><span style="color: #FF7B72">=</span><span style="color: #A5D6FF">'upper left'</span><span style="color: #C9D1D9">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C9D1D9">plt.show()</span></span></code></pre>
+<p><img src="https://res.cloudinary.com/mind-matrix/image/upload/v1618864813/quad-deep-nn_y8mumo.png" alt="results"></p>
+<p>It is clear that the Quadratic Dense Layer-based Auto-Encoder beat the classical AutoEncoder by a significant margin. In fact, for almost all models (and especially the Auto-Encoder models since they heavily rely on the Dense Layer) the Quadratic Dense Layer outperforms the classical Dense Layer.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It is worth mentioning that this is not true, however, for all cases. In some cases where the classical Dense Neural Network is already sufficiently capable of modeling the target dataset, the Quadratic Dense Layer provides almost insignificant or sometimes no improvement. But in no cases have I found that using the Quadratic Dense Layer reduces the accuracy or increases the loss. In short, try the Quadratic Dense Layers when your target dataset is fairly complex and your model modest-to-heavily relies on Dense Layers. This may give you an added boost to your model in the best case and show no improvements in the worst case.</p>
+<p>Thanks for reading! Happy coding 😊</p>
+			</article>
+		</main>
+		
+
+<footer class="astro-IQQNAWOR">
+	If you found this information useful, please share 📱. While attribution is not necessary, I would appreciate it a lot. 💖
+	<ul class="social astro-IQQNAWOR">
+		<li class="astro-IQQNAWOR">
+			<a href="mailto:sagnikmodak1118@gmail.com" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#eb4f34" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 4 4 C 2.895 4 2 4.895 2 6 L 2 18 C 2 19.105 2.895 20 4 20 L 20 20 C 21.105 20 22 19.105 22 18 L 22 6 C 22 4.895 21.105 4 20 4 L 4 4 z M 5.5976562 6 L 18.402344 6 L 12 10 L 5.5976562 6 z M 5 8.6269531 L 12 13 L 19 8.6269531 L 19 18 L 5 18 L 5 8.6269531 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://wa.me/7005878172" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#25D365" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" class="astro-IQQNAWOR">    <path d="M 15 3 C 8.373 3 3 8.373 3 15 C 3 17.251208 3.6323415 19.350068 4.7109375 21.150391 L 3.1074219 27 L 9.0820312 25.431641 C 10.829354 26.425062 12.84649 27 15 27 C 21.627 27 27 21.627 27 15 C 27 8.373 21.627 3 15 3 z M 10.892578 9.4023438 C 11.087578 9.4023438 11.287937 9.4011562 11.460938 9.4101562 C 11.674938 9.4151563 11.907859 9.4308281 12.130859 9.9238281 C 12.395859 10.509828 12.972875 11.979906 13.046875 12.128906 C 13.120875 12.277906 13.173313 12.453437 13.070312 12.648438 C 12.972312 12.848437 12.921344 12.969484 12.777344 13.146484 C 12.628344 13.318484 12.465078 13.532109 12.330078 13.662109 C 12.181078 13.811109 12.027219 13.974484 12.199219 14.271484 C 12.371219 14.568484 12.968563 15.542125 13.851562 16.328125 C 14.986562 17.342125 15.944188 17.653734 16.242188 17.802734 C 16.540187 17.951734 16.712766 17.928516 16.884766 17.728516 C 17.061766 17.533516 17.628125 16.864406 17.828125 16.566406 C 18.023125 16.268406 18.222188 16.319969 18.492188 16.417969 C 18.766188 16.515969 20.227391 17.235766 20.525391 17.384766 C 20.823391 17.533766 21.01875 17.607516 21.09375 17.728516 C 21.17075 17.853516 21.170828 18.448578 20.923828 19.142578 C 20.676828 19.835578 19.463922 20.505734 18.919922 20.552734 C 18.370922 20.603734 17.858562 20.7995 15.351562 19.8125 C 12.327563 18.6215 10.420484 15.524219 10.271484 15.324219 C 10.122484 15.129219 9.0605469 13.713906 9.0605469 12.253906 C 9.0605469 10.788906 9.8286563 10.071437 10.097656 9.7734375 C 10.371656 9.4754375 10.692578 9.4023438 10.892578 9.4023438 z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+		<li class="astro-IQQNAWOR">
+			<a href="https://www.linkedin.com/in/sagnik-modak/" target="_blank" class="astro-IQQNAWOR">
+				<svg fill="#0077b4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px" height="30px" class="astro-IQQNAWOR"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M9,17H6.5v-7H9V17z M7.7,8.7c-0.8,0-1.3-0.5-1.3-1.2s0.5-1.2,1.4-1.2c0.8,0,1.3,0.5,1.3,1.2S8.6,8.7,7.7,8.7z M18,17h-2.4v-3.8c0-1.1-0.7-1.3-0.9-1.3	s-1.1,0.2-1.1,1.3c0,0.2,0,3.8,0,3.8h-2.5v-7h2.5v1c0.3-0.6,1-1,2.2-1s2.2,1,2.2,3.2V17z" class="astro-IQQNAWOR"></path></svg>
+			</a>
+		</li>
+	</ul>
+</footer>
+
+	</body></html>
