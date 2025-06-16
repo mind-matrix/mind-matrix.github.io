@@ -5,6 +5,6 @@ export const get = () =>
     rss({
         title: SITE_TITLE,
         description: SITE_DESCRIPTION,
-        site: import.meta.env.SITE,
+        site: "https://mind-matrix.github.io",
         items: import.meta.glob('./**/*.md'),
     });
