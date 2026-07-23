@@ -7,8 +7,7 @@
         "start": "astro dev",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro",
-        "deploy": "push-dir --dir=dist --branch=master --cleanup"
+        "astro": "astro"
     },
     "devDependencies": {
         "@astrojs/mdx": "^0.10.0",
@@ -16,8 +15,7 @@
         "@astrojs/sitemap": "^1.0.0",
         "@fontsource/lato": "^4.5.9",
         "@fontsource/roboto": "^4.5.8",
-        "astro": "^1.0.6",
-        "push-dir": "^0.4.1"
+        "astro": "^1.0.6"
     },
     "dependencies": {
         "rehype-autolink-headings": "^6.1.1",
