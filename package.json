@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@astrojs/mdx": "^0.10.0",
-        "@astrojs/rss": "^1.0.0",
+        "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^1.0.0",
         "@fontsource/lato": "^4.5.9",
         "@fontsource/roboto": "^4.5.8",
