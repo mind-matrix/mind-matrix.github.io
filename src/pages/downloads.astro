@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+
+const assets = [
+    {
+        title: '3D Pen-stand',
+        thumbnail: '/thumbnails/23_08_2022_penstand.png',
+        href: '/downloads/23_08_2022_penstand.glb',
+        description:
+            'A beautiful low-poly handcrafted penstand. It uses compressed 2K textures from poliigon.com. The asset is provided in GLB format and can be easily ported into most 3D Modelling Software and even used in AR/VR.',
+    },
+    {
+        title: '3D Table',
+        thumbnail: '/thumbnails/23_08_2022_table.png',
+        href: '/downloads/23_08_2022_table.glb',
+        description:
+            'A beautiful low-poly wooden-top table with rusty metallic legs. It uses compressed 4K textures from poliigon.com. It consists of roughly 2000 polygons. The asset is provided in GLB format and can be easily ported into most 3D Modelling Software and even used in AR/VR.',
+    },
+];
+---
+
+<Base title={`${SITE_TITLE} - Downloads`} description={SITE_DESCRIPTION}>
+    <section>
+        <h1>Downloads</h1>
+        <p class="intro">
+            A list of all art assets created by me. Feel free to use them for
+            commercial/non-commercial purposes. Attribution is not necessary but
+            would be greatly appreciated.
+        </p>
+        <p class="note">
+            <strong>N.B.</strong> Textures and lighting may not load correctly in
+            the WebGL Viewer. Please download and open in any standard 3D software.
+        </p>
+
+        <ul class="asset-grid" role="list">
+            {assets.map((asset) => (
+                <li>
+                    <lucid-card>
+                        <img
+                            class="thumb"
+                            src={asset.thumbnail}
+                            alt={`${asset.title} preview`}
+                        />
+                        <span slot="title">{asset.title}</span>
+                        <p class="description">{asset.description}</p>
+                        <div class="actions">
+                            <lucid-button variant="primary" href={asset.href}>
+                                Download
+                            </lucid-button>
+                        </div>
+                    </lucid-card>
+                </li>
+            ))}
+        </ul>
+    </section>
+</Base>
+
+<style>
+    h1 {
+        margin: 0 0 var(--lucid-space-2);
+    }
+    .intro {
+        color: var(--lucid-color-fg-body);
+        margin: 0 0 var(--lucid-space-3);
+    }
+    .note {
+        color: var(--lucid-color-muted);
+        margin: 0 0 var(--lucid-space-6);
+        font-size: var(--lucid-font-size-sm);
+    }
+    .asset-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--lucid-space-4);
+    }
+    .thumb {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: var(--lucid-radius-md);
+        margin-bottom: var(--lucid-space-3);
+    }
+    .description {
+        margin: 0;
+        color: var(--lucid-color-fg-body);
+    }
+    .actions {
+        margin-top: var(--lucid-space-4);
+    }
+</style>

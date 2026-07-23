@@ -1,0 +1,49 @@
+---
+import '@mind-matrix/lucid-core/tokens.css';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+
+export interface Props {
+    title?: string | undefined;
+    description?: string | undefined;
+    image?: string | undefined;
+    katex?: boolean | undefined;
+}
+
+const {
+    title = SITE_TITLE,
+    description = SITE_DESCRIPTION,
+    image,
+    katex = false,
+} = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <BaseHead title={title} description={description} image={image} />
+        {katex && (
+            <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+                integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
+                crossorigin="anonymous"
+            />
+        )}
+        <style>
+            :not(:defined) { visibility: hidden; }
+        </style>
+    </head>
+    <body>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+        <script>
+            import '@mind-matrix/lucid-components';
+        </script>
+    </body>
+</html>

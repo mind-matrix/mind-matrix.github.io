@@ -1,53 +1,91 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import Base from '../layouts/Base.astro';
 import BlogList from '../components/BlogList.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 ---
 
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🚀 Deploying Experiments and Ideas</h1>
-			<p>
-				<img src="/logo.png" alt="logo" style="display: block; margin: 0 auto;">
-			</p>
-			<p>
-				Hi there! I'm glad you decided to spend some time here.
-			</p>
-			<h2>
-				Articles
-			</h2>
-			<p>
-				Explore some awesome discoveries, tips and tricks on all things code!
-				<BlogList limit={5} />
-			</p>
-			<h2>Publications</h2>
-			<p>
-				This is a list of my publication(s).
-				<ul class="min">
-					<li>
-						<time datetime="Dec 22, 2021">Dec 22, 2021</time>
-						<a href="https://ieeexplore.ieee.org/document/9641626">
-							Improving performance of Recurrent Neural Networks for Question-Answering with Attention-based Context Reduction
-						</a>
-					</li>
-				</ul>
-			</p>
-			<!-- <h2>Projects</h2>
-			<p>
-				Find out more about some of my personal projects.
-				<ul class="min">
-					<li></li>
-				</ul>
-			</p> -->
-		</main>
-		<Footer />
-	</body>
-</html>
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <section class="hero">
+        <img src="/logo.png" alt="" class="hero-logo" />
+        <h1>🚀 Deploying Experiments and Ideas</h1>
+        <p class="lede">Hi there! I'm glad you decided to spend some time here.</p>
+        <div class="hero-cta">
+            <lucid-button variant="primary" href="/blog">Read the blog</lucid-button>
+            <lucid-button href="/about">About me</lucid-button>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Articles</h2>
+        <p class="section-intro">
+            Explore some awesome discoveries, tips and tricks on all things code!
+        </p>
+        <BlogList limit={5} />
+    </section>
+
+    <section class="section">
+        <h2>Publications</h2>
+        <p class="section-intro">This is a list of my publication(s).</p>
+        <lucid-card variant="outlined">
+            <span slot="title">
+                Improving performance of Recurrent Neural Networks for Question-Answering with Attention-based Context Reduction
+            </span>
+            <time class="meta" datetime="2021-12-22">Dec 22, 2021</time>
+            <p class="pub-actions">
+                <lucid-button
+                    variant="ghost"
+                    href="https://ieeexplore.ieee.org/document/9641626"
+                    target="_blank"
+                >
+                    Read on IEEE Xplore
+                </lucid-button>
+            </p>
+        </lucid-card>
+    </section>
+</Base>
+
+<style>
+    .hero {
+        text-align: center;
+        padding: var(--lucid-space-8) 0 var(--lucid-space-12);
+    }
+    .hero-logo {
+        display: block;
+        max-width: 160px;
+        margin: 0 auto var(--lucid-space-4);
+    }
+    .hero h1 {
+        font-size: var(--lucid-font-size-xl);
+        margin: 0 0 var(--lucid-space-3);
+    }
+    .lede {
+        color: var(--lucid-color-fg-body);
+        font-size: var(--lucid-font-size-lg);
+        margin: 0 0 var(--lucid-space-6);
+    }
+    .hero-cta {
+        display: flex;
+        gap: var(--lucid-space-3);
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .section {
+        margin-block: var(--lucid-space-12);
+    }
+    .section h2 {
+        margin: 0 0 var(--lucid-space-2);
+    }
+    .section-intro {
+        color: var(--lucid-color-fg-body);
+        margin: 0 0 var(--lucid-space-4);
+    }
+    .meta {
+        display: block;
+        color: var(--lucid-color-muted);
+        font-size: var(--lucid-font-size-sm);
+        margin-block: var(--lucid-space-1) var(--lucid-space-3);
+    }
+    .pub-actions {
+        margin: var(--lucid-space-3) 0 0;
+    }
+</style>

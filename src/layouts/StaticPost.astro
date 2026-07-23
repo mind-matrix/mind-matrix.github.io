@@ -1,73 +1,71 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import Base from './Base.astro';
 
 export interface Props {
-	content: {
-		title: string;
-		description: string;
-		created?: string;
-		updated?: string;
-		heroImage?: string;
-	};
+    content: {
+        title: string;
+        description: string;
+        created?: string;
+        updated?: string;
+        heroImage?: string;
+    };
 }
 
 const {
-	content: { title, description, created, updated, heroImage },
+    content: { title, description, created, updated, heroImage },
 } = Astro.props as Props;
 ---
 
-<html>
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-  				border-top: 1px solid #DDD;
-				margin: 1rem 0;
-			}
-			article {
-				text-align: justify;
-			}
-		</style>
-		<style is:global>
-			.toc {
-				display: none;
-			}
-		</style>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
-		integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
-	</head>
+<Base title={title} description={description} image={heroImage} katex>
+    <article>
+        {heroImage && (
+            <img class="hero" width={720} height={360} src={heroImage} alt="" />
+        )}
+        <h1 class="title">{title}</h1>
+        {created && (
+            <time class="posted" datetime={created}>
+                {new Date(created).toLocaleDateString('en-us', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                })}
+            </time>
+        )}
+        {updated && (
+            <div class="updated">Last updated on <time>{updated}</time></div>
+        )}
+        <hr />
+        <slot />
+    </article>
+</Base>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				{heroImage && (
-					<img
-						width={720}
-						height={360}
-						src={heroImage}
-						alt=""
-					/>
-				)}
-				<h1 class="title">{title}</h1>
-				{created && <time datetime={created}>
-					{new Date(created).toLocaleDateString('en-us', {
-						year: 'numeric',
-						month: 'short',
-						day: 'numeric',
-					})}
-				</time>}
-				{updated && <div>Last updated on <time>{updated}</time></div>}
-				<hr/>
-				<slot />
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+<style>
+    .title {
+        font-size: 2em;
+        margin: 0.25em 0 0;
+    }
+    .hero {
+        width: 100%;
+        height: auto;
+        border-radius: var(--lucid-radius-md);
+    }
+    .posted,
+    .updated {
+        color: var(--lucid-color-muted);
+        font-size: var(--lucid-font-size-sm);
+    }
+    hr {
+        border: 0;
+        border-top: 1px solid var(--lucid-color-border);
+        margin: var(--lucid-space-4) 0;
+    }
+    article {
+        text-align: justify;
+    }
+</style>
+
+<style is:global>
+    .toc {
+        display: none;
+    }
+</style>

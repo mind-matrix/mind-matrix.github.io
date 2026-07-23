@@ -1,56 +1,63 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ * Base document styles. Colors, spacing, typography flow from
+ * @mind-matrix/lucid-core/tokens.css so overriding a token cascades
+ * to plain HTML in this site AND to every lucid component inside it.
  */
+
+:root {
+    --lucid-color-fg: #222;
+    --lucid-color-fg-body: #444;
+    --lucid-color-bg: #fff;
+    --lucid-color-primary: #3273dc;
+    --lucid-color-primary-hover: #2861b8;
+    --lucid-color-primary-fg: #fff;
+    --lucid-color-muted: #888;
+    --lucid-color-border: #ddd;
+    --lucid-color-surface-subtle: #f2f2f2;
+    --lucid-color-surface-subtle-hover: #e6e6e6;
+    --lucid-color-visited: #8e32dc;
+}
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: "Lato", sans-serif;
+    font-family: "Lato", var(--lucid-font-family);
     margin: auto;
-    padding: 20px;
+    padding: var(--lucid-space-4);
     max-width: 75ch;
     text-align: left;
-    background-color: #fff;
+    background-color: var(--lucid-color-bg);
+    color: var(--lucid-color-fg-body);
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.5;
-    color: #444;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong,
-b {
-    color: #222;
+h1, h2, h3, h4, h5, h6, strong, b {
+    color: var(--lucid-color-fg);
 }
 
 a {
-    color: #3273dc;
+    color: var(--lucid-color-primary);
 }
 
-nav a {
-    margin-right: 10px;
+a:hover {
+    color: var(--lucid-color-primary-hover);
+}
+
+a:visited {
+    color: var(--lucid-color-visited);
 }
 
 textarea {
     width: 100%;
-    font-size: 16px;
+    font-size: var(--lucid-font-size-lg);
 }
 
 input {
-    font-size: 16px;
-}
-
-content {
-    line-height: 1.6;
+    font-size: var(--lucid-font-size-lg);
 }
 
 table {
@@ -63,41 +70,29 @@ img {
 }
 
 code {
-    padding: 2px 5px;
-    background-color: #f2f2f2;
+    padding: 2px var(--lucid-space-1);
+    background-color: var(--lucid-color-surface-subtle);
+    border-radius: var(--lucid-radius-sm);
+    font-family: var(--lucid-font-mono);
+    font-size: 0.95em;
 }
 
 pre {
-    padding: 1rem;
+    padding: var(--lucid-space-4);
+    background-color: var(--lucid-color-surface-subtle);
+    border-radius: var(--lucid-radius-md);
+    overflow-x: auto;
 }
 
-pre>code {
+pre > code {
     all: unset;
+    font-family: var(--lucid-font-mono);
 }
 
 blockquote {
-    border: 1px solid #999;
-    color: #222;
-    padding: 2px 0px 2px 20px;
-    margin: 0px;
+    border-inline-start: 3px solid var(--lucid-color-border);
+    color: var(--lucid-color-fg);
+    padding: var(--lucid-space-1) 0 var(--lucid-space-1) var(--lucid-space-4);
+    margin: var(--lucid-space-4) 0;
     font-style: italic;
-}
-
-ul.min {
-    list-style-type: none;
-    padding: unset;
-}
-
-ul.min li {
-    display: flex;
-}
-
-ul.min li time {
-    flex: 0 0 130px;
-    font-style: italic;
-    color: #888;
-}
-
-ul.min li a:visited {
-    color: #8e32dc;
 }

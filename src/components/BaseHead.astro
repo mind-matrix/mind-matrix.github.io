@@ -6,7 +6,7 @@ import '../styles/global.css';
 export interface Props {
 	title: string;
 	description: string;
-	image?: string;
+	image?: string | undefined;
 }
 
 const { title, description, image = '/placeholder-social.jpg' } = Astro.props;

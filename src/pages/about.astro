@@ -1,53 +1,60 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import Base from '../layouts/Base.astro';
 import StatCard from '../components/StatCard.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
 function yearsSince(dateStr: string) {
-    // Parse the input date string (dd/mm/yy)
     const [day, month, year] = dateStr.split('/').map(Number);
-
     if (!day || !month || !year) {
         return 0;
     }
-    
-    // Create Date objects
     const inputDate = new Date(year, month - 1, day) as any;
     const currentDate = new Date() as any;
-    
-    // Calculate difference in milliseconds and convert to years
     const diffInMillis = currentDate - inputDate;
     const years = diffInMillis / (1000 * 60 * 60 * 24 * 365.25);
-    
-    // Round to 2 decimal places
     return Number(years.toFixed(2));
 }
 
 const stats = {
-    "Degree": "Computer Science and Engineering (B.Tech)",
-    "Experience": `${yearsSince("12/08/2021")} years`,
-    "Languages": "English, Hindi, Bengali",
-    "Position": "SDE-II @ Amazon"
+    Degree: 'Computer Science and Engineering (B.Tech)',
+    Experience: `${yearsSince('12/08/2021')} years`,
+    Languages: 'English, Hindi, Bengali',
+    Position: 'SDE-II @ Amazon',
 };
 ---
 
-<!DOCTYPE html>
-<html lang="en-us">
-	<head>
-		<BaseHead title={`${SITE_TITLE} - About`} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-        <Header />
-		<main>
-            <content>
-                <StatCard imageUrl="/sagnik.png" accessibilityLabel="Sagnik's Profile Picture" stats={stats} />
-                <p>
-                    Hi, I am Sagnik. I'll break the ice! A little bit about myself - I love to spend time with family and friends. I also happen to be a self-taught programming enthusiast. My primary interests are Web Development and AI and the bridge between the two. I graduated as a Bachelor in Technology in the field of Computer Science and Engineering from National Institute of Technology Agartala. I am hoping to study AI in the near future. Please use the Social Links towards the bottom of this page to reach out to me. I'd love to hear from you too!
-                </p>
-            </content>
-            <Footer />
-		</main>
-	</body>
-</html>
+<Base title={`${SITE_TITLE} - About`} description={SITE_DESCRIPTION}>
+    <section class="about">
+        <StatCard
+            imageUrl="/sagnik.png"
+            accessibilityLabel="Sagnik's Profile Picture"
+            stats={stats}
+        />
+        <div class="bio">
+            <p>
+                Hi, I am Sagnik. I'll break the ice! A little bit about myself - I
+                love to spend time with family and friends. I also happen to be a
+                self-taught programming enthusiast. My primary interests are Web
+                Development and AI and the bridge between the two. I graduated as a
+                Bachelor in Technology in the field of Computer Science and
+                Engineering from National Institute of Technology Agartala. I am
+                hoping to study AI in the near future. Please use the Social Links
+                towards the bottom of this page to reach out to me. I'd love to hear
+                from you too!
+            </p>
+        </div>
+    </section>
+</Base>
+
+<style>
+    .about {
+        display: grid;
+        gap: var(--lucid-space-8);
+        padding-block: var(--lucid-space-6);
+    }
+    .bio p {
+        margin: 0;
+        color: var(--lucid-color-fg-body);
+        line-height: 1.7;
+    }
+</style>

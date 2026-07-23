@@ -1,25 +1,37 @@
 ---
-import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../config';
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 
 <header>
-	<h2>
-		<img src="/icon.png" alt="icon" style="width: 100%; max-width: 30px; vertical-align: middle; padding-right: 10px;">
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="/downloads">Downloads</HeaderLink>
-	</nav>
+    <h2 class="brand">
+        <img src="/icon.png" alt="" />
+        <span>{SITE_TITLE}</span>
+    </h2>
+    <lucid-nav label="Primary">
+        <lucid-nav-link href="/" active={isActive('/')}>Home</lucid-nav-link>
+        <lucid-nav-link href="/blog" active={isActive('/blog')}>Blog</lucid-nav-link>
+        <lucid-nav-link href="/about" active={isActive('/about')}>About</lucid-nav-link>
+        <lucid-nav-link href="/downloads" active={isActive('/downloads')}>Downloads</lucid-nav-link>
+    </lucid-nav>
 </header>
+
 <style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
+    header {
+        margin: 0 0 var(--lucid-space-8);
+    }
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: var(--lucid-space-3);
+        margin: var(--lucid-space-2) 0 var(--lucid-space-4);
+        color: var(--lucid-color-fg);
+    }
+    .brand img {
+        width: 30px;
+        height: auto;
+    }
 </style>
