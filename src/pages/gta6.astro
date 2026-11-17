@@ -194,6 +194,7 @@ const title = 'Grand Theft Auto VI — Relationship Agreement Contract';
                         </div>
                     </div>
                 </section>
+                <p id="print-note" class="print-note" hidden></p>
                 <div id="end-sentinel" class="end-sentinel" aria-hidden="true"></div>
             </article>
         </main>
@@ -220,6 +221,7 @@ const title = 'Grand Theft Auto VI — Relationship Agreement Contract';
                 <div class="confirm-title" id="confirm-title"></div>
                 <div class="confirm-body" id="confirm-body"></div>
                 <button id="confirm-other" class="link-btn" type="button" hidden></button>
+                <button id="print-btn" class="btn btn-primary print-btn" type="button" hidden>Print / Save as PDF</button>
             </div>
         </footer>
 
@@ -409,6 +411,12 @@ const title = 'Grand Theft Auto VI — Relationship Agreement Contract';
                 $('#confirm-body').textContent =
                     `Signed by ${record.player!.name} and ${record.partner!.name}. Effective ${fmtDate(effective)}. Irrevocable.`;
                 confirm.classList.add('complete');
+                $('#print-btn').hidden = false;
+                const note = $('#print-note');
+                note.hidden = false;
+                note.textContent =
+                    `Executed electronically by both Parties. Effective Date: ${fmtDate(effective)}. ` +
+                    `Signatures are final and irrevocable (Clause 7.2). Record: ${location.host}${location.pathname}`;
                 return;
             }
 
@@ -517,6 +525,7 @@ const title = 'Grand Theft Auto VI — Relationship Agreement Contract';
         $('#sign-name').addEventListener('blur', () => validateName().then(showNameHint));
         $('#agree').addEventListener('change', updateSignBtn);
         $('#confirm-other').addEventListener('click', () => { showFormAnyway = true; render(); });
+        $('#print-btn').addEventListener('click', () => window.print());
 
         $<HTMLFormElement>('#sign-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -834,5 +843,37 @@ const title = 'Grand Theft Auto VI — Relationship Agreement Contract';
     }
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation-duration: 0.01ms !important; transition: none !important; }
+    }
+
+    .print-btn { margin-top: 0.7rem; padding: 0.65rem 1.2rem; font-size: 0.8rem; }
+    .print-note { display: none; }
+
+    /* ── Print: just the contract paper, flowing across pages ── */
+    @page { size: A4; margin: 16mm 16mm 18mm; }
+    @media print {
+        :root { color-scheme: light; }
+        html, body { height: auto; background: #fff !important; }
+        .gate, .cover, .actions, .passed { display: none !important; }
+        .app { display: block; height: auto; }
+        .scroller { overflow: visible; padding: 0; background: none; }
+        .paper {
+            max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none;
+            background: #fff; font-size: 11.5pt; line-height: 1.5;
+        }
+        .paper::before { display: none; }
+        .paper-head { margin-bottom: 1.2rem; padding-bottom: 1rem; }
+        .logo { width: 110px; }
+        h1 { font-size: 28pt; }
+        h2 { font-size: 12pt; margin-top: 1.3rem; break-after: avoid; page-break-after: avoid; }
+        .clauses > li, .paper p { break-inside: avoid; page-break-inside: avoid; }
+        .witness { break-after: avoid; page-break-after: avoid; }
+        .sig-grid { break-inside: avoid; page-break-inside: avoid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .sig.signed .sig-ink { animation: none; clip-path: none; }
+        .print-note[hidden] { display: none !important; }
+        .print-note {
+            display: block; margin-top: 1.6rem !important; padding-top: 0.6rem; border-top: 1px solid #ccc;
+            font: 8pt/1.4 'Inter', sans-serif; color: #555; break-inside: avoid;
+        }
+        * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     }
 </style>
