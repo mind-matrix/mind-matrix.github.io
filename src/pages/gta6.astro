@@ -1,0 +1,838 @@
+---
+// GTA 6 Relationship Agreement Contract.
+// Standalone full-viewport page (no site header/footer), gated by an access code.
+const title = 'Grand Theft Auto VI — Relationship Agreement Contract';
+---
+
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#120a1f" />
+    <link rel="icon" type="image/png" href="/gta6/logo.png" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Mrs+Saint+Delafield&display=swap"
+    />
+</head>
+<body>
+    <!-- ───────────── Access gate ───────────── -->
+    <div id="gate" class="gate">
+        <img class="gate-bg" src="/gta6/cover.jpg" alt="" aria-hidden="true" />
+        <form id="gate-form" class="gate-card" autocomplete="off">
+            <img class="gate-logo" src="/gta6/logo.png" alt="Grand Theft Auto VI" />
+            <p class="gate-kicker">Restricted document</p>
+            <label for="gate-code" class="gate-label">Enter the cheat code</label>
+            <input
+                id="gate-code"
+                class="gate-input"
+                type="password"
+                inputmode="text"
+                autocapitalize="characters"
+                spellcheck="false"
+                placeholder="••••••••"
+                required
+            />
+            <button class="btn btn-primary" type="submit">Unlock</button>
+            <p id="gate-msg" class="gate-msg" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+
+    <!-- ───────────── Contract app ───────────── -->
+    <div id="app" class="app" hidden>
+        <header class="cover">
+            <img src="/gta6/cover.jpg" alt="Jason and Lucia" />
+            <div id="period-chip" class="period-chip"></div>
+        </header>
+
+        <main id="scroller" class="scroller">
+            <article class="paper">
+                <div class="paper-head">
+                    <img class="logo" src="/gta6/logo.png" alt="GTA VI logo" />
+                    <h1>Grand Theft Auto 6</h1>
+                    <p class="subtitle">Relationship Agreement Contract</p>
+                    <p class="ref">Ref. No. GTA6-RAC-2026/11 &middot; Executed electronically</p>
+                </div>
+
+                <p class="lead">
+                    This Relationship Agreement Contract (the <strong>&ldquo;Agreement&rdquo;</strong>) is
+                    entered into on the Effective Date (as defined below) by and between the individual
+                    executing this Agreement as <strong>the Player</strong> and the individual executing
+                    this Agreement as <strong>the Partner</strong> (each a <strong>&ldquo;Party&rdquo;</strong>
+                    and together the <strong>&ldquo;Parties&rdquo;</strong>).
+                </p>
+
+                <h2>Recitals</h2>
+                <p><span class="sc">Whereas</span>, Rockstar Games has announced the release of the video game
+                    <em>Grand Theft Auto VI</em>;</p>
+                <p><span class="sc">Whereas</span>, the Player has awaited said release for a period the Parties
+                    agree was unreasonably long;</p>
+                <p><span class="sc">Whereas</span>, the Parties wish to preserve the harmony of their relationship
+                    while accommodating the Player&rsquo;s gameplay;</p>
+                <p><span class="sc">Now, therefore</span>, in consideration of the mutual affection, patience and
+                    snacks exchanged between them, the Parties agree as follows:</p>
+
+                <h2 class="art">Article 1 &mdash; Definitions</h2>
+                <ol class="clauses">
+                    <li><strong>&ldquo;Game&rdquo;</strong> means <em>Grand Theft Auto VI</em>, published by
+                        Rockstar Games, including all of its modes, content and updates.</li>
+                    <li><strong>&ldquo;Release Date&rdquo;</strong> means the date on which the Game is first
+                        made generally available by Rockstar Games to the public.</li>
+                    <li><strong>&ldquo;Gaming Period&rdquo;</strong> has the meaning given in Clause 2.1, as
+                        adjusted under Clause 2.2.</li>
+                    <li><strong>&ldquo;Natural Stopping Point&rdquo;</strong> means the completion, failure or
+                        saving of the mission, task, activity, cut-scene or other unit of gameplay that the
+                        Player is engaged in at the time a request is made.</li>
+                    <li><strong>&ldquo;Emotional Support&rdquo;</strong> means hugs, kisses, conversation,
+                        reassurance, words of encouragement and any other comforting act reasonably requested
+                        by a Party.</li>
+                    <li><strong>&ldquo;Emergency&rdquo;</strong> means a matter that satisfies both limbs of the
+                        test in Clause 4.2.</li>
+                </ol>
+
+                <h2 class="art">Article 2 &mdash; Grant of Gaming Period</h2>
+                <ol class="clauses">
+                    <li>The Partner hereby grants the Player permission to play the Game from
+                        <strong>19 November 2026</strong> to <strong>29 November 2026</strong>, both days
+                        inclusive (the <strong>&ldquo;Gaming Period&rdquo;</strong>), being a duration of
+                        eleven (11) consecutive calendar days.</li>
+                    <li>Should Rockstar Games alter the Release Date, the Gaming Period shall commence on the
+                        revised Release Date and continue for the same duration of eleven (11) consecutive
+                        calendar days. No such alteration shall reduce, shorten or otherwise diminish the
+                        duration of the Gaming Period.</li>
+                </ol>
+
+                <h2 class="art">Article 3 &mdash; Emotional Support During the Gaming Period</h2>
+                <ol class="clauses">
+                    <li>During the Gaming Period, the Partner may request Emotional Support from the Player,
+                        including without limitation hugs, kisses and conversation.</li>
+                    <li>Any such request shall be fulfilled at the Player&rsquo;s convenience. The Player shall
+                        not be obliged to fulfil any request immediately, and a delay in fulfilment shall not
+                        constitute a breach of this Agreement.</li>
+                </ol>
+
+                <h2 class="art">Article 4 &mdash; Interruptions of Gameplay</h2>
+                <ol class="clauses">
+                    <li>Where the Partner wishes to hold a conversation that is not disruptive to the
+                        Partner&rsquo;s well-being in any way, the Partner shall allow the Player sufficient
+                        time to reach a Natural Stopping Point and close the Game before engaging with the
+                        Partner.</li>
+                    <li>The Partner shall be entitled to request an immediate interruption of gameplay only for
+                        an Emergency, being a matter that (a) the Partner finds plausible; <em>and</em> (b) the
+                        Partner has significant reasons to believe the Player will also find plausible.</li>
+                    <li>A matter that satisfies only one limb of Clause 4.2 shall not constitute an Emergency.</li>
+                </ol>
+
+                <h2 class="art">Article 5 &mdash; Fictional Nature of the Game</h2>
+                <ol class="clauses">
+                    <li>The Partner acknowledges and understands that the Game is a game and that everything
+                        occurring within it is fictional, including but not limited to:
+                        <ol class="sub" type="a">
+                            <li>dating, flirting or entering into romantic relationships with in-game characters;</li>
+                            <li>visiting in-game clubs, bars or other establishments; and</li>
+                            <li>endangering, harming or otherwise inconveniencing the Player&rsquo;s playable
+                                character(s) or any non-playable character, whether through direct or indirect
+                                actions.</li>
+                        </ol>
+                    </li>
+                    <li>No act or omission within the Game shall be construed as reflecting the Player&rsquo;s
+                        real-world intentions or character, nor be raised as grounds for grievance between the
+                        Parties.</li>
+                </ol>
+
+                <h2 class="art">Article 6 &mdash; Emotional Support for In-Game Setbacks</h2>
+                <ol class="clauses">
+                    <li>Upon the Player&rsquo;s request, the Partner agrees to provide Emotional Support to the
+                        Player where the Player loses a mission, fails a task, or faces any other inconvenience
+                        that negatively affects the Player&rsquo;s emotional state.</li>
+                    <li>Such Emotional Support shall be provided as soon as is practicable for the Partner.</li>
+                </ol>
+
+                <h2 class="art">Article 7 &mdash; General Provisions</h2>
+                <ol class="clauses">
+                    <li><strong>Effective Date.</strong> This Agreement takes effect on the date on which it has
+                        been signed by both Parties (the <strong>&ldquo;Effective Date&rdquo;</strong>) and
+                        remains in force until the end of the Gaming Period.</li>
+                    <li><strong>Irrevocability.</strong> A signature once applied to this Agreement is final and
+                        may not be withdrawn, revoked or erased.</li>
+                    <li><strong>Electronic Execution.</strong> The Parties consent to execute this Agreement
+                        electronically and may sign at different times and on different devices.</li>
+                    <li><strong>Severability.</strong> If any provision of this Agreement is found
+                        unenforceable, the remaining provisions shall continue in full force and effect.</li>
+                    <li><strong>Entire Agreement.</strong> This Agreement constitutes the entire understanding
+                        between the Parties regarding the Game and supersedes all prior sighs, eye-rolls and
+                        negotiations.</li>
+                    <li><strong>Governing Law.</strong> This Agreement is governed by the laws of the State of
+                        Leonida.</li>
+                    <li><strong>Good Faith.</strong> The Parties enter into this Agreement in a spirit of love and
+                        good humour and shall interpret it accordingly.</li>
+                </ol>
+
+                <p class="witness"><span class="sc">In witness whereof</span>, the Parties have executed this
+                    Agreement electronically on the dates set out below.</p>
+
+                <section class="sig-grid" aria-label="Signatures">
+                    <div class="sig" id="sig-player">
+                        <div class="sig-line"><span class="sig-ink"></span></div>
+                        <div class="sig-meta">
+                            <span class="sig-role">The Player</span>
+                            <span class="sig-name">Awaiting signature</span>
+                            <span class="sig-date"></span>
+                        </div>
+                    </div>
+                    <div class="sig" id="sig-partner">
+                        <div class="sig-line"><span class="sig-ink"></span></div>
+                        <div class="sig-meta">
+                            <span class="sig-role">The Partner</span>
+                            <span class="sig-name">Awaiting signature</span>
+                            <span class="sig-date"></span>
+                        </div>
+                    </div>
+                </section>
+                <div id="end-sentinel" class="end-sentinel" aria-hidden="true"></div>
+            </article>
+        </main>
+
+        <footer class="actions" id="actions">
+            <div id="action-loading" class="action-row muted">Loading signatures…</div>
+
+            <form id="sign-form" class="sign-form" hidden>
+                <div class="role-toggle" role="radiogroup" aria-label="Signing as">
+                    <button type="button" class="role" data-role="player" role="radio">The Player</button>
+                    <button type="button" class="role" data-role="partner" role="radio">The Partner</button>
+                </div>
+                <input id="sign-name" class="name-input" type="text" placeholder="Your full name"
+                    maxlength="60" autocomplete="name" required />
+                <label class="agree" id="agree-label">
+                    <input type="checkbox" id="agree" disabled />
+                    <span id="agree-text">Scroll to the end of the contract to agree</span>
+                </label>
+                <button id="sign-btn" class="btn btn-primary" type="submit" disabled>Sign</button>
+                <p id="sign-msg" class="sign-msg" role="status" aria-live="polite"></p>
+            </form>
+
+            <div id="confirm" class="confirm" hidden>
+                <div class="confirm-title" id="confirm-title"></div>
+                <div class="confirm-body" id="confirm-body"></div>
+                <button id="confirm-other" class="link-btn" type="button" hidden></button>
+            </div>
+        </footer>
+
+        <div id="passed" class="passed" aria-hidden="true">
+            <div class="passed-title">Mission Passed</div>
+            <div class="passed-sub">Respect +</div>
+        </div>
+    </div>
+
+    <script>
+        // ─── Config ────────────────────────────────────────────────
+        // Firebase Realtime Database. Its security rules make each signature write-once:
+        // gta6/<key>/<player|partner> can be created but never overwritten or deleted.
+        const DB_URL = 'https://gta6-msagnik-default-rtdb.asia-southeast1.firebasedatabase.app';
+        const KV_KEY = 'signature'; // use 'signature-dev' for local testing
+        const RECORD_URL = `${DB_URL}/gta6/${KV_KEY}`;
+        // SHA-256 of the normalised access code (uppercase, letters/digits only).
+        const CODE_HASH = 'bded351d2e0641a3f52ace8f95a67144f315234e74ae2e9e80db55e4f98523b9';
+        const UNLOCK_KEY = 'gta6-unlocked';
+        const MINE_KEY = `gta6-signed-as:${KV_KEY}`;
+        const PERIOD_START = new Date(2026, 10, 19); // local midnight, 19 Nov
+        const PERIOD_DAYS = 11;
+
+        type Role = 'player' | 'partner';
+        type Signature = { name: string; signedAt: string };
+        type Record_ = Partial<Record<Role, Signature>>;
+        const ROLES: Role[] = ['player', 'partner'];
+        const LABEL: Record<Role, string> = { player: 'The Player', partner: 'The Partner' };
+
+        const $ = <T extends HTMLElement = HTMLElement>(sel: string) => document.querySelector(sel) as T;
+        const store = {
+            get(k: string) { try { return localStorage.getItem(k); } catch { return null; } },
+            set(k: string, v: string) { try { localStorage.setItem(k, v); } catch { /* ignore */ } },
+        };
+
+        // ─── Gate ──────────────────────────────────────────────────
+        async function sha256(text: string) {
+            const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+            return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+        }
+        const normalise = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+        const gate = $('#gate');
+        const gateForm = $<HTMLFormElement>('#gate-form');
+        const gateMsg = $('#gate-msg');
+
+        gateForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const input = $<HTMLInputElement>('#gate-code');
+            if ((await sha256(normalise(input.value))) === CODE_HASH) {
+                store.set(UNLOCK_KEY, CODE_HASH);
+                gateMsg.textContent = 'Cheat activated';
+                gateMsg.className = 'gate-msg ok';
+                setTimeout(unlock, 500);
+            } else {
+                gateMsg.textContent = 'Wasted';
+                gateMsg.className = 'gate-msg bad';
+                gateForm.classList.remove('shake');
+                void gateForm.offsetWidth;
+                gateForm.classList.add('shake');
+                input.select();
+            }
+        });
+
+        function unlock() {
+            gate.remove();
+            $('#app').hidden = false;
+            renderPeriod();
+            watchScroll();
+            load();
+        }
+
+        if (store.get(UNLOCK_KEY) === CODE_HASH) unlock();
+        else $<HTMLInputElement>('#gate-code').focus();
+
+        // ─── Gaming-period chip ────────────────────────────────────
+        function renderPeriod() {
+            const chip = $('#period-chip');
+            const now = new Date();
+            const end = new Date(PERIOD_START);
+            end.setDate(end.getDate() + PERIOD_DAYS);
+            const dayMs = 86400000;
+            if (now < PERIOD_START) {
+                const ms = PERIOD_START.getTime() - now.getTime();
+                const d = Math.floor(ms / dayMs);
+                const h = Math.floor((ms % dayMs) / 3600000);
+                chip.textContent = `Gaming Period begins in ${d}d ${h}h`;
+            } else if (now < end) {
+                const day = Math.floor((now.getTime() - PERIOD_START.getTime()) / dayMs) + 1;
+                chip.textContent = `Gaming Period · Day ${day} of ${PERIOD_DAYS}`;
+                chip.classList.add('live');
+            } else {
+                chip.textContent = 'Gaming Period concluded';
+            }
+        }
+
+        // ─── Scroll-to-agree ───────────────────────────────────────
+        let readToEnd = false;
+        function watchScroll() {
+            const io = new IntersectionObserver((entries) => {
+                if (entries.some((en) => en.isIntersecting)) {
+                    readToEnd = true;
+                    $<HTMLInputElement>('#agree').disabled = false;
+                    $('#agree-text').textContent = 'I have read and agree to the terms of this Agreement';
+                    $('#agree-label').classList.add('ready');
+                    io.disconnect();
+                }
+            }, { root: $('#scroller') });
+            io.observe($('#end-sentinel'));
+        }
+
+        // ─── Signature registry (Firebase REST) ────────────────────
+        class AlreadySigned extends Error {}
+
+        async function fetchRecord(): Promise<Record_> {
+            const res = await fetch(`${RECORD_URL}.json`, { cache: 'no-store' });
+            if (!res.ok) throw new Error(`Signature registry read failed (${res.status})`);
+            const data = await res.json();
+            return data && typeof data === 'object' ? data : {};
+        }
+        async function saveSignature(role: Role, sig: Signature) {
+            const res = await fetch(`${RECORD_URL}/${role}.json`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(sig),
+            });
+            if (res.ok) return;
+            // The rules deny any write to an existing signature, so 401 almost always
+            // means the other device got there first.
+            if (res.status === 401 && (await fetchRecord())[role]) throw new AlreadySigned();
+            let reason = '';
+            try { reason = (await res.json()).error || ''; } catch { /* ignore */ }
+            throw new Error(`Signature registry refused the write (${res.status})${reason ? `: ${reason}` : ''}`);
+        }
+
+        // ─── Rendering ─────────────────────────────────────────────
+        let record: Record_ = {};
+        let selected: Role | null = null;
+        let showFormAnyway = false;
+
+        const fmtDate = (iso: string) =>
+            new Date(iso).toLocaleString(undefined, {
+                day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit',
+            });
+
+        async function load() {
+            try {
+                record = await fetchRecord();
+                render();
+            } catch (err) {
+                $('#action-loading').innerHTML = '';
+                const p = document.createElement('span');
+                p.textContent = 'Could not reach the signature registry. ';
+                const b = document.createElement('button');
+                b.className = 'link-btn';
+                b.textContent = 'Retry';
+                b.onclick = () => { $('#action-loading').textContent = 'Loading signatures…'; load(); };
+                $('#action-loading').append(p, b);
+            }
+        }
+
+        function render() {
+            $('#action-loading').hidden = true;
+            for (const role of ROLES) {
+                const el = $(`#sig-${role}`);
+                const sig = record[role];
+                el.classList.toggle('signed', !!sig);
+                el.querySelector('.sig-ink')!.textContent = sig ? sig.name : '';
+                el.querySelector('.sig-name')!.textContent = sig ? sig.name : 'Awaiting signature';
+                el.querySelector('.sig-date')!.textContent = sig ? `Signed ${fmtDate(sig.signedAt)}` : '';
+            }
+            fitSignatures();
+
+            const unsigned = ROLES.filter((r) => !record[r]);
+            const mine = store.get(MINE_KEY) as Role | null;
+            const form = $<HTMLFormElement>('#sign-form');
+            const confirm = $('#confirm');
+            const other = $('#confirm-other');
+
+            if (unsigned.length === 0) {
+                form.hidden = true;
+                confirm.hidden = false;
+                other.hidden = true;
+                const effective = [record.player!, record.partner!]
+                    .map((s) => s.signedAt).sort().at(-1)!;
+                $('#confirm-title').textContent = 'Contract executed';
+                $('#confirm-body').textContent =
+                    `Signed by ${record.player!.name} and ${record.partner!.name}. Effective ${fmtDate(effective)}. Irrevocable.`;
+                confirm.classList.add('complete');
+                return;
+            }
+
+            if (mine && record[mine] && !showFormAnyway) {
+                form.hidden = true;
+                confirm.hidden = false;
+                const waiting = unsigned[0];
+                $('#confirm-title').textContent = `Signed as ${LABEL[mine]}`;
+                $('#confirm-body').textContent =
+                    `${record[mine]!.name}, ${fmtDate(record[mine]!.signedAt)}. Awaiting ${LABEL[waiting]}.`;
+                other.hidden = false;
+                other.textContent = `${LABEL[waiting]} signing on this device?`;
+                return;
+            }
+
+            confirm.hidden = true;
+            form.hidden = false;
+            if (!selected || record[selected]) selected = unsigned.length === 1 ? unsigned[0] : null;
+            document.querySelectorAll<HTMLButtonElement>('.role').forEach((btn) => {
+                const role = btn.dataset.role as Role;
+                const signed = !!record[role];
+                btn.disabled = signed;
+                btn.textContent = signed ? `${LABEL[role]} ✓` : LABEL[role];
+                btn.setAttribute('aria-checked', String(selected === role));
+                btn.classList.toggle('active', selected === role);
+            });
+            updateSignBtn();
+        }
+
+        // ─── Name verification ─────────────────────────────────────
+        // Accepted names per role, stored only as SHA-256("gta6:<role>:<name>") where
+        // <name> is lowercased with all whitespace removed.
+        const NAME_HASHES: Record<Role, string[]> = {
+            player: [
+                '025efd46c3fc2492e1e0f095759ce9a8382a94fec943beb50d62a7c1ee729ce3',
+                '989ae98a54fe613a035c6a75bf91fc52a0fd05cfe7219cdf323da83788275e2c',
+            ],
+            partner: [
+                '24934edb9cf5926fb2c16b2cdc8f59d6a4d0dea1357f232139f58d3430141a3e',
+                'b2bdb3888e9a4a5abf07b843ca362dee844c29ed87f9dbab7c99759acf5b9963',
+                '6a4757336798b7649fe01572c27fb140f3ee5bcec5c33d4d080ca62a6315a686',
+            ],
+        };
+        const cleanName = (s: string) => s.trim().replace(/\s+/g, ' ');
+        let nameOk = false;
+
+        async function validateName() {
+            const input = $<HTMLInputElement>('#sign-name');
+            const value = input.value;
+            const role = selected;
+            let ok = false;
+            if (role && value.trim()) {
+                const key = value.toLowerCase().replace(/\s+/g, '');
+                ok = NAME_HASHES[role].includes(await sha256(`gta6:${role}:${key}`));
+            }
+            // Ignore stale results if the user kept typing or switched role meanwhile.
+            if (input.value !== value || selected !== role) return;
+            nameOk = ok;
+            input.classList.toggle('valid', ok);
+            updateSignBtn();
+        }
+
+        function showNameHint() {
+            const value = $<HTMLInputElement>('#sign-name').value.trim();
+            const invalid = !!value && !nameOk && !!selected;
+            $('#sign-name').classList.toggle('invalid', invalid);
+            $('#sign-msg').textContent = invalid ? `That name isn’t on this contract for ${LABEL[selected!]}.` : '';
+        }
+
+        // Shrink each handwritten signature until it fits on its line.
+        function fitSignatures() {
+            document.querySelectorAll<HTMLElement>('.sig-ink').forEach((ink) => {
+                ink.style.fontSize = '';
+                const line = ink.parentElement!;
+                let size = parseFloat(getComputedStyle(ink).fontSize);
+                const min = 16;
+                while (ink.scrollWidth > line.clientWidth && size > min) {
+                    size = Math.max(min, size - 1);
+                    ink.style.fontSize = `${size}px`;
+                }
+            });
+        }
+        window.addEventListener('resize', fitSignatures);
+        document.fonts?.ready.then(fitSignatures);
+
+        function updateSignBtn() {
+            const agreed = $<HTMLInputElement>('#agree').checked;
+            $<HTMLButtonElement>('#sign-btn').disabled = !(selected && nameOk && agreed && readToEnd);
+            $<HTMLButtonElement>('#sign-btn').textContent = selected ? `Sign as ${LABEL[selected]}` : 'Choose your role';
+        }
+
+        document.querySelectorAll<HTMLButtonElement>('.role').forEach((btn) =>
+            btn.addEventListener('click', async () => {
+                selected = btn.dataset.role as Role;
+                render();
+                await validateName();
+                showNameHint();
+            }));
+        $('#sign-name').addEventListener('input', async () => {
+            nameOk = false;
+            updateSignBtn();
+            await validateName();
+            // Clear the error as soon as it becomes valid; only nag again on blur.
+            if (nameOk) showNameHint();
+        });
+        $('#sign-name').addEventListener('blur', () => validateName().then(showNameHint));
+        $('#agree').addEventListener('change', updateSignBtn);
+        $('#confirm-other').addEventListener('click', () => { showFormAnyway = true; render(); });
+
+        $<HTMLFormElement>('#sign-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!selected) return;
+            const role = selected;
+            const btn = $<HTMLButtonElement>('#sign-btn');
+            const msg = $('#sign-msg');
+            btn.disabled = true;
+            btn.textContent = 'Signing…';
+            msg.textContent = '';
+            try {
+                const sig: Signature = {
+                    name: cleanName($<HTMLInputElement>('#sign-name').value),
+                    signedAt: new Date().toISOString(),
+                };
+                // Write-once per role is enforced server-side by the database rules.
+                await saveSignature(role, sig);
+                record = await fetchRecord().catch(() => ({ ...record, [role]: sig }));
+                store.set(MINE_KEY, role);
+                showFormAnyway = false;
+                $<HTMLInputElement>('#sign-name').value = '';
+                $('#sign-name').classList.remove('valid', 'invalid');
+                nameOk = false;
+                $<HTMLInputElement>('#agree').checked = false;
+                render();
+                missionPassed();
+            } catch (err) {
+                if (err instanceof AlreadySigned) {
+                    record = await fetchRecord().catch(() => record);
+                    msg.textContent = `${LABEL[role]} has already signed. Signatures cannot be changed.`;
+                    render();
+                    return;
+                }
+                msg.textContent = err instanceof TypeError
+                    ? 'Signing failed — check your connection and try again.'
+                    : `Signing failed — ${(err as Error).message}`;
+                updateSignBtn();
+            }
+        });
+
+        function missionPassed() {
+            const el = $('#passed');
+            el.classList.remove('show');
+            void el.offsetWidth;
+            el.classList.add('show');
+            const s = $('#scroller');
+            s.scrollTo({ top: s.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
+<style is:global>
+    :root {
+        --bg: #120a1f;
+        --bg-2: #1c1030;
+        --ink: #1d1822;
+        --paper: #fbf6ee;
+        --paper-edge: #eadfcd;
+        --muted: #6f6478;
+        --pink: #ff3d8b;
+        --orange: #ff9a3c;
+        --violet: #7b3fe4;
+        --teal: #19c3b5;
+        --red: #d2232a;
+        --sunset: linear-gradient(100deg, var(--orange), var(--pink) 55%, var(--violet));
+        --footer-fg: #f4ecff;
+        color-scheme: dark;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+        background: var(--bg);
+        color: var(--footer-fg);
+        font-family: 'Inter', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+    [hidden] { display: none !important; }
+
+    /* ── Buttons ── */
+    .btn {
+        font: 700 0.95rem/1 'Inter', sans-serif;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.9rem 1.6rem;
+        cursor: pointer;
+        transition: transform 0.15s, opacity 0.15s, filter 0.15s;
+        white-space: nowrap;
+    }
+    .btn-primary { background: var(--sunset); color: #fff; box-shadow: 0 6px 20px -6px rgba(255, 61, 139, 0.7); }
+    .btn-primary:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.08); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+    .btn:focus-visible, .role:focus-visible, .link-btn:focus-visible,
+    .gate-input:focus-visible, .name-input:focus-visible {
+        outline: 2px solid var(--teal); outline-offset: 2px;
+    }
+    .link-btn {
+        background: none; border: 0; padding: 0; color: var(--teal);
+        font: inherit; text-decoration: underline; cursor: pointer;
+    }
+
+    /* ── Gate ── */
+    .gate {
+        position: fixed; inset: 0; display: grid; place-items: center; padding: 16px;
+        overflow: hidden;
+    }
+    .gate-bg {
+        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+        filter: blur(14px) brightness(0.45) saturate(1.3); transform: scale(1.1);
+    }
+    .gate-card {
+        position: relative; width: min(380px, 100%);
+        display: flex; flex-direction: column; align-items: stretch; gap: 0.8rem;
+        padding: 2rem 1.6rem 1.4rem; text-align: center;
+        background: rgba(18, 10, 31, 0.72); backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px;
+        box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8);
+    }
+    .gate-logo { width: 120px; margin: 0 auto 0.2rem; }
+    .gate-kicker {
+        margin: 0; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange);
+    }
+    .gate-label { font-family: 'Anton', sans-serif; font-size: 1.6rem; letter-spacing: 0.02em; }
+    .gate-input {
+        font: 600 1.25rem/1 'Inter', monospace; letter-spacing: 0.3em; text-align: center; text-transform: uppercase;
+        padding: 0.85rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(0, 0, 0, 0.35); color: #fff;
+    }
+    .gate-msg {
+        min-height: 2.2rem; margin: 0.2rem 0 0;
+        font-family: 'Anton', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .gate-msg.bad { color: var(--red); text-shadow: 0 2px 0 #000; }
+    .gate-msg.ok { color: var(--teal); }
+    .shake { animation: shake 0.4s; }
+    @keyframes shake {
+        20%, 60% { transform: translateX(-8px); }
+        40%, 80% { transform: translateX(8px); }
+    }
+
+    /* ── App layout: static cover / scrolling contract / static actions ── */
+    .app {
+        height: 100vh; height: 100dvh;
+        display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+    .cover { position: relative; height: clamp(130px, 28vh, 300px); overflow: hidden; }
+    .cover img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+    .cover::after {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(18, 10, 31, 0) 50%, var(--bg));
+        pointer-events: none;
+    }
+    .period-chip {
+        position: absolute; z-index: 1; right: 16px; bottom: 14px;
+        font: 600 0.75rem/1 'Inter', sans-serif; letter-spacing: 0.06em; text-transform: uppercase;
+        padding: 0.5rem 0.8rem; border-radius: 999px;
+        background: rgba(18, 10, 31, 0.7); backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .period-chip.live { border-color: var(--teal); color: var(--teal); }
+
+    .scroller {
+        overflow-y: auto; overscroll-behavior: contain; padding: 8px 16px 32px;
+        background: radial-gradient(1200px 400px at 50% 0, var(--bg-2), var(--bg));
+        scrollbar-color: var(--pink) transparent;
+    }
+    .paper {
+        max-width: 760px; margin: 0 auto;
+        background: var(--paper); color: var(--ink);
+        border-radius: 6px; border: 1px solid var(--paper-edge);
+        padding: clamp(1.4rem, 5vw, 3.4rem);
+        box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+        font-family: 'EB Garamond', Georgia, serif; font-size: 1.12rem; line-height: 1.6;
+        position: relative;
+    }
+    .paper::before { /* sunset ribbon on the top edge */
+        content: ''; position: absolute; left: 0; right: 0; top: 0; height: 6px;
+        background: var(--sunset); border-radius: 6px 6px 0 0;
+    }
+    .paper-head { text-align: center; margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px double var(--paper-edge); }
+    .logo { width: clamp(110px, 26vw, 170px); display: block; margin: 0 auto 0.8rem; }
+    h1 {
+        margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase;
+        font-size: clamp(2rem, 7vw, 3.2rem); line-height: 1.05; letter-spacing: 0.01em;
+    }
+    .subtitle {
+        margin: 0.4rem 0 0; font-variant: small-caps; letter-spacing: 0.12em;
+        font-size: clamp(1.05rem, 3.2vw, 1.35rem); color: #4a3f55;
+    }
+    .ref { margin: 0.6rem 0 0; font: 500 0.72rem/1.4 'Inter', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    h2 {
+        font-family: 'EB Garamond', serif; font-weight: 700; font-size: 1.15rem;
+        text-transform: uppercase; letter-spacing: 0.06em; margin: 2rem 0 0.6rem;
+    }
+    .lead { margin-top: 0; }
+    .sc { font-variant: small-caps; font-weight: 600; letter-spacing: 0.04em; }
+    .paper p { margin: 0 0 0.7rem; }
+    .clauses { counter-reset: clause; list-style: none; padding: 0; margin: 0; }
+    .clauses > li { counter-increment: clause; position: relative; padding-left: 2.6rem; margin-bottom: 0.6rem; }
+    .clauses > li::before {
+        position: absolute; left: 0; top: 0; font-weight: 600; color: #6b4fa0;
+    }
+    /* Article numbers prefix the clause, e.g. 2.1 */
+    .paper { counter-reset: art; }
+    h2.art { counter-increment: art; }
+    h2.art + .clauses > li::before { content: counter(art) '.' counter(clause); }
+    .sub { margin: 0.4rem 0 0; padding-left: 1.4rem; }
+    .sub li { margin-bottom: 0.25rem; }
+    .witness { margin-top: 2.2rem !important; }
+
+    .sig-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .sig { min-width: 0; }
+    .sig-line {
+        height: 3.4rem; border-bottom: 1.5px solid var(--ink);
+        display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .sig-ink {
+        /* Base size; fitSignatures() shrinks long names further to fit the line. */
+        font-family: 'Mrs Saint Delafield', cursive; font-size: 2.2rem; line-height: 1.1; color: #1f2a6b;
+        padding: 0 0.6rem 0.1rem 0.3rem; white-space: nowrap; max-width: 100%;
+    }
+    .sig.signed .sig-ink { animation: ink 1.2s ease-out both; }
+    @keyframes ink { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+    .sig-meta { display: flex; flex-direction: column; padding-top: 0.4rem; font-family: 'Inter', sans-serif; }
+    .sig-role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .sig-name { font-size: 0.95rem; font-weight: 600; }
+    .sig:not(.signed) .sig-name { color: var(--muted); font-weight: 400; font-style: italic; }
+    .sig-date { font-size: 0.78rem; color: var(--muted); }
+    .end-sentinel { height: 1px; }
+
+    /* ── Static action bar ── */
+    .actions {
+        background: rgba(18, 10, 31, 0.96);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+        box-shadow: 0 -16px 40px -10px rgba(0, 0, 0, 0.6);
+    }
+    .actions > * { max-width: 760px; margin: 0 auto; }
+    .muted { color: #a99cb8; font-size: 0.9rem; text-align: center; }
+    .sign-form {
+        display: grid; gap: 10px 12px; align-items: center;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: 'role name btn' 'agree agree agree' 'msg msg msg';
+    }
+    .role-toggle {
+        grid-area: role; display: flex; padding: 3px; border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .role {
+        font: 600 0.8rem/1 'Inter', sans-serif; color: #cbbfdc; background: none; border: 0;
+        padding: 0.6rem 0.85rem; border-radius: 999px; cursor: pointer; white-space: nowrap;
+    }
+    .role.active { background: #fff; color: var(--bg); }
+    .role:disabled { color: var(--teal); cursor: default; }
+    .name-input {
+        grid-area: name; min-width: 0; font: 500 1rem 'Inter', sans-serif; color: #fff;
+        padding: 0.75rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(0, 0, 0, 0.3);
+    }
+    #sign-btn { grid-area: btn; }
+    .agree {
+        grid-area: agree; display: flex; gap: 0.6rem; align-items: center;
+        font-size: 0.88rem; color: #8f829f; cursor: not-allowed;
+    }
+    .agree.ready { color: var(--footer-fg); cursor: pointer; }
+    .agree input { width: 1.15rem; height: 1.15rem; accent-color: var(--pink); flex: none; }
+    .name-input.valid { border-color: var(--teal); }
+    .name-input.invalid { border-color: var(--orange); }
+    .sign-msg { grid-area: msg; margin: 0; font-size: 0.85rem; color: var(--orange); }
+    .sign-msg:empty { display: none; }
+
+    .confirm { text-align: center; }
+    .confirm-title {
+        font-family: 'Anton', sans-serif; text-transform: uppercase; font-size: 1.6rem; letter-spacing: 0.03em;
+        background: var(--sunset); -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .confirm-body { font-size: 0.92rem; color: #d8cde6; margin-top: 0.2rem; }
+    .confirm .link-btn { margin-top: 0.4rem; font-size: 0.85rem; }
+
+    /* ── Mission passed overlay ── */
+    .passed {
+        position: fixed; inset: 0; display: grid; place-content: center; text-align: center;
+        pointer-events: none; opacity: 0;
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55), transparent 70%);
+    }
+    .passed.show { animation: passed 3.2s ease-out both; }
+    .passed-title {
+        font-family: 'Anton', sans-serif; text-transform: uppercase;
+        font-size: clamp(2.6rem, 11vw, 6rem); color: #f4c430;
+        text-shadow: 3px 3px 0 #000, -1px -1px 0 #000;
+    }
+    .passed-sub { font-family: 'Anton', sans-serif; font-size: clamp(1.2rem, 4vw, 2rem); color: #fff; text-shadow: 2px 2px 0 #000; }
+    @keyframes passed {
+        0% { opacity: 0; transform: scale(1.3); }
+        12% { opacity: 1; transform: scale(1); }
+        80% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    @media (max-width: 640px) {
+        .paper { font-size: 1.04rem; }
+        .clauses > li { padding-left: 2.2rem; }
+        .sig-grid { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+        .sign-form {
+            grid-template-columns: 1fr;
+            grid-template-areas: 'role' 'name' 'agree' 'btn' 'msg';
+        }
+        .role-toggle { justify-self: stretch; }
+        .role { flex: 1; }
+        #sign-btn { width: 100%; }
+        .period-chip { right: 12px; bottom: 10px; font-size: 0.68rem; }
+        .cover { height: clamp(110px, 20vh, 200px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; transition: none !important; }
+    }
+</style>
